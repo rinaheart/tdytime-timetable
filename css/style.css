@@ -1,0 +1,315 @@
+/* ==========================================================================
+   TdyTime V2 — Production Stylesheet
+   Faithful recreation of TdyTime Original Design System (_GH)
+   - Slate & Classic Blue Palette
+   - Be Vietnam Pro (Vietnamese native) + Montserrat (Heading & Numbers)
+   - Zero-Jank Sidebar Engine: 40.0px Strict Icon Alignment (Delta X = 0px)
+   - Semantic Gradient Dots & Custom Scrollbars
+   ========================================================================== */
+
+:root {
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Sidebar Geometry */
+    --sidebar-collapsed-width: 80px;  /* w-20 */
+    --sidebar-expanded-width: 220px;
+    --sidebar-icon-center: 40px;      /* 10px (nav-px) + 10px (item-px) + 20px (half-icon) = 40px */
+
+    /* Adaptive Semantic Gradient Tokens */
+    --semantic-morning-from: #22d3ee;   /* cyan-400 */
+    --semantic-morning-to: #0891b2;     /* cyan-600 */
+    --semantic-afternoon-from: #fb923c; /* orange-400 */
+    --semantic-afternoon-to: #ea580c;   /* orange-600 */
+    --semantic-evening-from: #818cf8;   /* indigo-400 */
+    --semantic-evening-to: #4f46e5;     /* indigo-600 */
+    --semantic-success-from: #34d399;   /* emerald-400 */
+    --semantic-success-to: #059669;     /* emerald-600 */
+    --semantic-warning-from: #fbbf24;   /* amber-400 */
+    --semantic-warning-to: #d97706;     /* amber-600 */
+    --semantic-danger-from: #f87171;    /* red-400 */
+    --semantic-danger-to: #dc2626;      /* red-600 */
+}
+
+body {
+    font-family: var(--font-body);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: -0.015em;
+}
+
+.font-num {
+    font-family: var(--font-heading);
+    font-variant-numeric: tabular-nums;
+}
+
+.tabular-numbers {
+    font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   SIDEBAR STRICT ALIGNMENT ENGINE (0-Jank, Delta X = 0.0px)
+   -------------------------------------------------------------------------- */
+
+.sidebar {
+    transition: width 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: width;
+}
+
+.sidebar-expanded .sidebar {
+    width: var(--sidebar-expanded-width);
+}
+
+.sidebar-collapsed .sidebar {
+    width: var(--sidebar-collapsed-width);
+}
+
+/* Nav Item Base - Giữ nguyên padding & layout bất kể co hay mở */
+.nav-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 150ms ease, color 150ms ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Hộp bọc icon: Cố định 40px x 40px để tâm icon luôn ở vị trí 40px */
+.nav-item .icon-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    /* TUYỆT ĐỐI KHÔNG CÓ ANIMATION HAY MARGIN SHIFT Ở ICON */
+}
+
+.nav-item .icon-box svg,
+.nav-item .icon-box i,
+.nav-item .material-symbols-outlined {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    line-height: 1;
+}
+
+/* Text nhãn của Sidebar */
+.sidebar-text {
+    margin-left: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: opacity 150ms ease-in-out, width 150ms ease-in-out;
+}
+
+.sidebar-collapsed .sidebar-text {
+    opacity: 0;
+    width: 0;
+    margin-left: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.sidebar-expanded .sidebar-text {
+    opacity: 1;
+    width: auto;
+    visibility: visible;
+}
+
+/* Mode-tabs Active State (Chuẩn TdyTime Blue Accent) */
+.nav-item.active {
+    background-color: #eff6ff; /* blue-50 */
+    color: #2563eb;           /* blue-600 */
+    font-weight: 600;
+}
+
+.dark .nav-item.active {
+    background-color: rgba(30, 58, 138, 0.35); /* blue-900/35 */
+    color: #60a5fa;                           /* blue-400 */
+}
+
+/* Hover State */
+.nav-item:not(.active):hover {
+    background-color: #f1f5f9; /* slate-100 */
+}
+
+.dark .nav-item:not(.active):hover {
+    background-color: #1e293b; /* slate-800 */
+}
+
+/* --------------------------------------------------------------------------
+   SEMANTIC BADGES WITH GRADIENT DOTS (TdyTime Standard)
+   -------------------------------------------------------------------------- */
+
+.badge-semantic {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-radius: 8px;
+    border-width: 1px;
+    line-height: 1.2;
+}
+
+.badge-semantic .semantic-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    flex-shrink: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Shift Morning */
+.badge-shift-morning {
+    background-color: #fffbeb;
+    color: #b45309;
+    border-color: #fde68a;
+}
+.dark .badge-shift-morning {
+    background-color: rgba(120, 53, 15, 0.2);
+    color: #fbbf24;
+    border-color: rgba(180, 83, 9, 0.4);
+}
+.badge-shift-morning .semantic-dot {
+    background: linear-gradient(to right, var(--semantic-morning-from), var(--semantic-morning-to));
+}
+
+/* Shift Afternoon */
+.badge-shift-afternoon {
+    background-color: #fff7ed;
+    color: #c2410c;
+    border-color: #fed7aa;
+}
+.dark .badge-shift-afternoon {
+    background-color: rgba(154, 52, 18, 0.2);
+    color: #fb923c;
+    border-color: rgba(194, 65, 12, 0.4);
+}
+.badge-shift-afternoon .semantic-dot {
+    background: linear-gradient(to right, var(--semantic-afternoon-from), var(--semantic-afternoon-to));
+}
+
+/* Shift Evening */
+.badge-shift-evening {
+    background-color: #eef2ff;
+    color: #4338ca;
+    border-color: #c7d2fe;
+}
+.dark .badge-shift-evening {
+    background-color: rgba(49, 46, 129, 0.2);
+    color: #818cf8;
+    border-color: rgba(67, 56, 202, 0.4);
+}
+.badge-shift-evening .semantic-dot {
+    background: linear-gradient(to right, var(--semantic-evening-from), var(--semantic-evening-to));
+}
+
+/* Matching Status Badges */
+.badge-exact {
+    background-color: #ecfdf5;
+    color: #047857;
+    border-color: #a7f3d0;
+}
+.dark .badge-exact {
+    background-color: rgba(6, 78, 59, 0.25);
+    color: #34d399;
+    border-color: rgba(4, 120, 87, 0.4);
+}
+.badge-exact .semantic-dot {
+    background: linear-gradient(to right, #10b981, #059669);
+}
+
+.badge-auto {
+    background-color: #fefce8;
+    color: #a16207;
+    border-color: #fef08a;
+}
+.dark .badge-auto {
+    background-color: rgba(113, 63, 18, 0.25);
+    color: #facc15;
+    border-color: rgba(161, 98, 7, 0.4);
+}
+.badge-auto .semantic-dot {
+    background: linear-gradient(to right, #eab308, #ca8a04);
+}
+
+.badge-saved {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    border-color: #bfdbfe;
+}
+.dark .badge-saved {
+    background-color: rgba(30, 58, 138, 0.25);
+    color: #60a5fa;
+    border-color: rgba(29, 78, 216, 0.4);
+}
+.badge-saved .semantic-dot {
+    background: linear-gradient(to right, #3b82f6, #2563eb);
+}
+
+.badge-unmapped {
+    background-color: #f8fafc;
+    color: #64748b;
+    border-color: #e2e8f0;
+}
+.dark .badge-unmapped {
+    background-color: rgba(30, 41, 59, 0.3);
+    color: #94a3b8;
+    border-color: rgba(51, 65, 85, 0.5);
+}
+.badge-unmapped .semantic-dot {
+    background: linear-gradient(to right, #94a3b8, #64748b);
+}
+
+/* --------------------------------------------------------------------------
+   CUSTOM SCROLLBAR (TdyTime Standard)
+   -------------------------------------------------------------------------- */
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(203, 213, 225, 0.6);
+    border-radius: 9999px;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(51, 65, 85, 0.6);
+}
+
+@media (max-width: 768px) {
+    .custom-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* Tôn trọng thiết lập giảm chuyển động của hệ điều hành */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

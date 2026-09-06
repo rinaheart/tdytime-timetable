@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TdyTime - Phân tích & Báo cáo Lịch giảng</title>
+<!-- Content-Security-Policy (SEC-04): Zero External CDN Execution -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' blob:; object-src 'none'; base-uri 'self';">
+<!-- SheetJS for Excel export/import (Local Offline) -->
+<script src="vendor/xlsx.full.min.js"></script>
+<!-- ExcelJS for Styled Excel export (Local Offline) -->
+<script src="vendor/exceljs.min.js"></script>
+<!-- Lucide Icons (Local Offline Standard) -->
+<script src="vendor/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<!-- TdyTime Native Typography: Be Vietnam Pro + Montserrat + JetBrains Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Compiled Tailwind CSS (PERF-01: Zero-JIT Offline) -->
+<link rel="stylesheet" href="css/tailwind.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 min-h-screen flex flex-col text-slate-800 dark:text-slate-100 sidebar-expanded antialiased" id="app-body">
+<!-- Top Navigation Header (h-14, 56px) -->
+<header class="bg-white dark:bg-slate-900 h-14 w-full sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 shadow-sm flex justify-between items-center px-4">
+    <div class="flex items-center gap-3 h-full">
+        <button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" aria-label="Thu gọn hoặc mở rộng thanh điều hướng" onclick="document.getElementById('app-body').classList.toggle('sidebar-expanded'); document.getElementById('app-body').classList.toggle('sidebar-collapsed');">
+            <i data-lucide="menu" class="w-5 h-5" aria-hidden="true"></i>
+        </button>
+        <div class="flex items-center gap-2">
+            <span class="font-heading font-bold text-slate-900 dark:text-white tracking-tight whitespace-nowrap text-base flex items-center gap-2">
+                TdyTime <span class="bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 text-[11px] px-1.5 py-0.5 rounded-md font-semibold border border-blue-200 dark:border-blue-900">v2</span>
+            </span>
+        </div>
+    </div>
+    
+    <div class="flex items-center">
+        <div class="flex items-center gap-2 header-info pl-2" id="headerInfo" style="display: none;">
+            <span class="text-xs text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700 font-semibold hidden sm:inline" id="headerTeacherName">GV: --</span>
+            <span class="text-xs text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-1 rounded-lg border border-emerald-200 dark:border-emerald-800 font-medium hidden sm:inline" id="headerSemesterText">Năm học: -- • HK--</span>
+        </div>
+    </div>
+
+    <div class="flex items-center gap-2 shrink-0">
+        <button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-colors active:scale-95 duration-150 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" aria-label="Chuyển đổi giao diện sáng/tối" onclick="document.documentElement.classList.toggle('dark')">
+            <i data-lucide="moon" class="w-5 h-5 dark:hidden" aria-hidden="true"></i>
+            <i data-lucide="sun" class="w-5 h-5 hidden dark:block" aria-hidden="true"></i>
+        </button>
+    </div>
+</header>
+
+<!-- Main Layout -->
+<div class="flex-grow flex w-full max-w-full overflow-hidden">
+    <!-- Sidebar (Strict Vertical Icon Alignment, Delta X = 0px) -->
+    <aside class="sidebar bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col shrink-0 overflow-hidden relative z-20 py-3 justify-between" aria-label="Điều hướng chính">
+        <nav class="flex flex-col gap-1 overflow-y-auto flex-1 min-h-0 px-2.5 custom-scrollbar" id="sideListContainer">
+            <a class="nav-item text-slate-600 dark:text-slate-400 group active mode-tab focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" data-mode="classes" href="#" title="Lớp học phần">
+                <div class="icon-box"><i data-lucide="layers" class="w-5 h-5" aria-hidden="true"></i></div>
+                <span class="sidebar-text">Lớp học phần</span>
+            </a>
+            <a class="nav-item text-slate-600 dark:text-slate-400 group mode-tab focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" data-mode="students" href="#" title="Lớp SV">
+                <div class="icon-box"><i data-lucide="users" class="w-5 h-5" aria-hidden="true"></i></div>
+                <span class="sidebar-text">Lớp SV</span>
+            </a>
+            <a class="nav-item text-slate-600 dark:text-slate-400 group mode-tab focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" data-mode="subjects" href="#" title="Học phần">
+                <div class="icon-box"><i data-lucide="book-open" class="w-5 h-5" aria-hidden="true"></i></div>
+                <span class="sidebar-text">Học phần</span>
+            </a>
+            
+            <div class="my-2 border-t border-slate-200 dark:border-slate-800 mx-2"></div>
+            
+            <a class="nav-item text-slate-600 dark:text-slate-400 group mode-tab focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" data-mode="curriculum" href="#" title="Chương trình">
+                <div class="icon-box"><i data-lucide="graduation-cap" class="w-5 h-5" aria-hidden="true"></i></div>
+                <span class="sidebar-text">Chương trình</span>
+            </a>
+            <a class="nav-item text-slate-600 dark:text-slate-400 group mode-tab focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" data-mode="schedule" href="#" title="Kế hoạch">
+                <div class="icon-box"><i data-lucide="calendar-check" class="w-5 h-5" aria-hidden="true"></i></div>
+                <span class="sidebar-text">Kế hoạch</span>
+            </a>
+            
+            <div class="my-2 border-t border-slate-200 dark:border-slate-800 mx-2"></div>
+            
+            <a class="nav-item text-slate-600 dark:text-slate-400 group mode-tab focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" data-mode="statistics" href="#" title="Thống kê">
+                <div class="icon-box"><i data-lucide="bar-chart-3" class="w-5 h-5" aria-hidden="true"></i></div>
+                <span class="sidebar-text">Thống kê</span>
+            </a>
+
+            <!-- Reset Button ngay dưới nút Thống kê -->
+            <button class="nav-item text-amber-700 hover:bg-amber-50 dark:text-amber-400 dark:hover:bg-amber-950/40 font-medium text-sm hidden focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none mt-1" id="btnResetFile" aria-label="Đổi file lịch giảng khác" title="Đổi lịch giảng">
+                <div class="icon-box"><i data-lucide="refresh-cw" class="w-5 h-5" aria-hidden="true"></i></div>
+                <span class="sidebar-text">Đổi lịch giảng</span>
+            </button>
+        </nav>
+    </aside>
+
+    <!-- Sub-menu (Column 2) -->
+    <aside id="subMenuPanel" class="w-[340px] flex-shrink-0 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hidden flex-col h-screen overflow-hidden" aria-label="Danh sách phân mục">
+        <div class="p-4 border-b border-slate-200 dark:border-slate-800 shrink-0">
+            <h2 id="subMenuTitle" class="font-heading font-bold text-base text-slate-800 dark:text-slate-100 line-clamp-1 text-balance">Danh sách</h2>
+        </div>
+        <div id="subMenuList" class="flex-1 overflow-y-auto p-3 flex flex-col gap-1.5 custom-scrollbar">
+            <!-- Sub-menu items injected via JS -->
+        </div>
+    </aside>
+
+    <!-- Workspace (Column 3) -->
+    <main class="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-950 p-6 flex flex-col gap-4 relative z-0 custom-scrollbar">
+        <!-- Hidden container for dynamic list (to prevent JS errors) -->
+        <div id="dynamicSidebarList" style="display: none;"></div>
+        
+        <!-- Upload Section -->
+        <section id="uploadSection" class="w-full max-w-2xl mx-auto flex flex-col gap-6 mt-10">
+            <div class="text-center mb-1">
+                <h1 class="text-2xl md:text-3xl font-bold font-heading text-blue-600 dark:text-blue-400 text-balance tracking-tight">Phân tích & Báo cáo Lịch giảng</h1>
+                <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm text-balance">Phân tích lịch giảng, đối chiếu kế hoạch và xuất báo cáo.</p>
+            </div>
+            
+            <!-- Banner quay lại nếu bấm nhầm Đổi lịch giảng -->
+            <div id="bannerReturnToActive" class="hidden p-3.5 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 rounded-2xl flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2.5 text-xs text-blue-800 dark:text-blue-300">
+                    <i data-lucide="info" class="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0"></i>
+                    <span>Lịch giảng hiện tại vẫn được giữ an toàn. Bạn có thể nhấn nút bên phải hoặc chọn tab ở thanh bên để quay lại.</span>
+                </div>
+                <button id="btnReturnToActive" type="button" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-xs font-semibold shrink-0 transition-colors shadow-sm flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none">
+                    <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Quay lại
+                </button>
+            </div>
+            
+            <div class="border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
+                <div class="flex border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-4 pt-3 gap-4" role="tablist">
+                    <button id="tabUploadFile" role="tab" aria-selected="true" class="font-semibold text-sm text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400 pb-2.5 px-3 flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none">
+                        <i data-lucide="upload" class="w-4 h-4" aria-hidden="true"></i> Tải file HTML
+                    </button>
+                    <button id="tabPasteData" role="tab" aria-selected="false" class="font-medium text-sm text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 pb-2.5 px-3 flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none">
+                        <i data-lucide="clipboard" class="w-4 h-4" aria-hidden="true"></i> Dán HTML
+                    </button>
+                </div>
+                
+                <div class="p-6">
+                    <!-- Panel: Upload File -->
+                    <div id="panelUploadFile" role="button" tabindex="0" aria-label="Nhấn để tải lên tệp lịch giảng HTML" class="flex flex-col items-center justify-center p-8 border-2 border-dashed border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 rounded-xl cursor-pointer transition-colors bg-slate-50/50 dark:bg-slate-900/50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" onclick="document.getElementById('fileInput').click()">
+                        <input type="file" id="fileInput" class="hidden" accept=".html,.htm" aria-label="Tải lên tệp lịch giảng HTML">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-3">
+                            <i data-lucide="file-code" class="w-8 h-8" aria-hidden="true"></i>
+                        </div>
+                        <h3 class="font-heading font-bold text-base text-slate-800 dark:text-slate-100 mb-1 text-balance">Chọn hoặc kéo thả file HTML</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 text-balance">File lịch giảng từ portal tín chỉ ĐHYD</p>
+                    </div>
+
+                    <!-- Panel: Paste Data -->
+                    <div id="panelPasteData" class="hidden flex flex-col">
+                        <label for="txtPasteHtml" class="sr-only">Nội dung mã nguồn HTML lịch giảng</label>
+                        <textarea id="txtPasteHtml" aria-label="Dán mã nguồn HTML lịch giảng" spellcheck="false" autocomplete="off" class="w-full h-48 p-3 rounded-xl border border-slate-200 dark:border-slate-700 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 font-mono bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100" placeholder="Dán HTML từ portal (Ctrl+A → Ctrl+C)…"></textarea>
+                        <div class="mt-4 flex justify-end">
+                            <button id="btnProcessPaste" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-sm font-semibold flex items-center gap-2 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none shadow-sm">
+                                <i data-lucide="sparkles" class="w-4 h-4" aria-hidden="true"></i> Phân tích lịch giảng
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workspace Container (Shown after upload) -->
+        <div id="workspaceContainer" class="hidden flex-col gap-6 h-full">
+
+            <!-- View 1: Schedule Tables (Classes, Students, Subjects) -->
+            <div id="classScheduleView" class="hidden flex-col h-full w-full">
+                <div class="overflow-auto flex-grow w-full pb-8 custom-scrollbar">
+                    <div id="scheduleTablesContainer" class="flex flex-col gap-6">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Curriculum View (Tab 4) -->
+            <!-- Curriculum View (Tab 4) -->
+            <div id="curriculumView" class="hidden flex-col gap-6 w-full max-w-6xl mx-auto">
+                
+                <!-- Context Header: Thông tin & Nút tiện ích -->
+                <div class="bg-gradient-to-r from-blue-50/80 via-white to-slate-50/80 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800/80 border border-blue-100 dark:border-slate-800 rounded-2xl p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-3">
+                    <div class="flex items-start md:items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-600/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400 flex items-center justify-center shrink-0">
+                            <i data-lucide="book-open" class="w-5 h-5" aria-hidden="true"></i>
+                        </div>
+                        <div>
+                            <h2 class="font-heading font-bold text-base text-slate-900 dark:text-white">Đối chiếu Chương trình khung</h2>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Nạp đề cương bài học để đối chiếu và liên kết với các học phần trong lịch giảng.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <button id="btnLoadDemoSyllabus" class="py-1.5 px-3.5 bg-white dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-900/60 rounded-full font-medium text-xs flex items-center gap-1.5 transition-all shadow-2xs active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" title="Nạp dữ liệu chương trình khung mẫu để kiểm tra nhanh">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5" aria-hidden="true"></i> Nạp dữ liệu mẫu
+                        </button>
+                        <button id="btnDownloadSyllabusTemplate" class="py-1.5 px-3.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full font-medium text-xs flex items-center gap-1.5 transition-all shadow-2xs active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" title="Tải mẫu bảng Excel chương trình khung">
+                            <i data-lucide="download" class="w-3.5 h-3.5" aria-hidden="true"></i> Tải file mẫu
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Subject Pills: Các học phần trong lịch giảng cần khớp -->
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm flex flex-col gap-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider font-heading flex items-center gap-1.5">
+                            <i data-lucide="layers" class="w-3.5 h-3.5 text-blue-600 dark:text-blue-400"></i> Học phần cần liên kết từ Lịch giảng
+                        </span>
+                        <span class="text-[11px] text-slate-400 dark:text-slate-500">Tự động nhận diện từ file đã tải</span>
+                    </div>
+                    <div id="timetableSubjectsPillList" class="flex flex-wrap items-center gap-2 pt-1">
+                        <!-- Injected via JS: Chips of subjects -->
+                    </div>
+                </div>
+
+                <!-- Data Input Editor Card -->
+                <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+                    <!-- Editor Header Toolbar -->
+                    <div class="px-4 py-2.5 bg-slate-50 dark:bg-slate-800/60 border-b border-slate-200 dark:border-slate-800 flex flex-wrap justify-between items-center gap-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Cấu trúc các cột dán từ Excel:</span>
+                            <div class="hidden sm:flex items-center gap-1 text-[11px] font-mono">
+                                <span class="px-1.5 py-0.5 rounded bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-num">STT</span>
+                                <span class="text-slate-400">→</span>
+                                <span class="px-1.5 py-0.5 rounded bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300">Tên bài học</span>
+                                <span class="text-slate-400">→</span>
+                                <span class="px-1.5 py-0.5 rounded bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-num">LT</span>
+                                <span class="text-slate-400">→</span>
+                                <span class="px-1.5 py-0.5 rounded bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-num">TH</span>
+                                <span class="text-slate-400">→</span>
+                                <span class="px-1.5 py-0.5 rounded bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-600 dark:text-slate-300 font-num">Tổng</span>
+                            </div>
+                        </div>
+                        <span id="syllabusLineCount" class="text-xs text-slate-400 dark:text-slate-500 font-num">0 dòng dữ liệu</span>
+                    </div>
+
+                    <!-- Textarea -->
+                    <div class="relative">
+                        <label for="txtPasteSyllabusGlobal" class="sr-only">Nội dung chương trình khung</label>
+                        <textarea id="txtPasteSyllabusGlobal" aria-label="Dán dữ liệu chương trình khung từ Excel" spellcheck="false" autocomplete="off" class="w-full h-44 p-4 text-xs font-mono bg-slate-50/30 dark:bg-slate-950/40 text-slate-800 dark:text-slate-100 focus:outline-none focus:bg-white dark:focus:bg-slate-900 border-none transition-colors custom-scrollbar" placeholder="Dán bảng dữ liệu từ Excel vào đây...
+Ví dụ:
+Dịch tễ học - Thực hành Nghiên cứu khoa học
+1	Bài 1. Đại cương về dịch tễ học	4	0	4
+2	Bài 2. Các chỉ số thường dùng trong dịch tễ học	4	0	4
+3	Bài 3. Thiết kế nghiên cứu và chọn mẫu	6	10	16"></textarea>
+                    </div>
+
+                    <!-- Editor Footer Toolbar -->
+                    <div class="px-4 py-3 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex flex-wrap justify-between items-center gap-3">
+                        <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+                            <i data-lucide="info" class="w-4 h-4 text-blue-500 shrink-0" aria-hidden="true"></i>
+                            <span>Chọn bảng trong Excel, nhấn <kbd class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-mono text-[10px]">Ctrl+C</kbd> rồi dán vào ô trên.</span>
+                        </p>
+                        <div class="flex items-center gap-2">
+                            <button id="btnClearSyllabusText" class="px-3.5 py-2 text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none">
+                                Xóa nội dung
+                            </button>
+                            <button id="btnProcessSyllabusGlobal" class="py-2 px-5 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold text-xs flex items-center gap-1.5 transition-all shadow-sm active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none">
+                                <i data-lucide="sparkles" class="w-4 h-4" aria-hidden="true"></i> Phân tích & Nạp chương trình khung
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- List of parsed curriculums -->
+                <div id="curriculumListContainer" class="flex flex-col gap-6 hidden">
+                    <!-- Bảng 1: Các học phần và Liên kết chương trình khung -->
+                    <div id="table1Container" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
+                        <div class="p-4 bg-slate-50/80 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 flex flex-wrap justify-between items-center gap-3">
+                            <div>
+                                <h3 class="font-heading font-bold text-sm text-slate-800 dark:text-slate-100 flex items-center gap-2 text-balance">
+                                    <i data-lucide="repeat" class="w-4 h-4 text-blue-600 dark:text-blue-400" aria-hidden="true"></i> Bảng 1. Đối chiếu học phần & chương trình khung
+                                </h3>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Tự động nhận diện chữ viết tắt và gợi ý CTK phù hợp nhất. Có thể điều chỉnh thủ công.</p>
+                            </div>
+                            <span id="linkSummaryBadge" aria-live="polite" class="badge-semantic badge-saved text-xs font-num font-semibold"></span>
+                        </div>
+                        <div class="overflow-x-auto w-full">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead class="bg-slate-100/80 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 font-semibold text-[11px] uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
+                                    <tr>
+                                        <th class="py-2.5 px-3 w-12 text-center font-num">STT</th>
+                                        <th class="py-2.5 px-3 w-52">Học phần (Lịch giảng)</th>
+                                        <th class="py-2.5 px-3">Chương trình khung liên kết</th>
+                                        <th class="py-2.5 px-3 w-36 text-center">Độ khớp</th>
+                                        <th class="py-2.5 px-3 w-16 text-center font-num">LT</th>
+                                        <th class="py-2.5 px-3 w-16 text-center font-num">TH</th>
+                                        <th class="py-2.5 px-3 w-16 text-center font-num">Tổng</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table1Body" class="divide-y divide-slate-100 dark:divide-slate-800/60 bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300">
+                                    <!-- Injected via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Bảng 2: Các học phần trong chương trình khung chưa có trong lịch giảng -->
+                    <div id="table2Container" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden hidden">
+                        <div class="p-4 bg-slate-50/80 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
+                            <h3 class="font-heading font-bold text-sm text-slate-700 dark:text-slate-300 flex items-center gap-2 text-balance">
+                                <i data-lucide="info" class="w-4 h-4 text-amber-500" aria-hidden="true"></i> Bảng 2. Chương trình khung chưa có trong lịch giảng kỳ này
+                            </h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Các môn học trong CTK đã nạp nhưng không có phân công dạy trong kỳ hiện tại.</p>
+                        </div>
+                        <div class="overflow-x-auto w-full">
+                            <table class="w-full text-left border-collapse text-xs">
+                                <thead class="bg-slate-100/80 dark:bg-slate-800/60 text-slate-600 dark:text-slate-300 font-semibold text-[11px] uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
+                                    <tr>
+                                        <th class="py-2.5 px-3 w-12 text-center font-num">STT</th>
+                                        <th class="py-2.5 px-3">Tên học phần CTK</th>
+                                        <th class="py-2.5 px-3 w-20 text-center font-num">Số bài</th>
+                                        <th class="py-2.5 px-3 w-16 text-center font-num">LT</th>
+                                        <th class="py-2.5 px-3 w-16 text-center font-num">TH</th>
+                                        <th class="py-2.5 px-3 w-16 text-center font-num">Tổng</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table2Body" class="divide-y divide-slate-100 dark:divide-slate-800/60 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400">
+                                    <!-- Injected via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mapping View (Tab 5) -->
+            <div id="mappingView" class="hidden flex-col gap-4 w-full">
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-2 gap-3">
+                    <div>
+                        <h2 class="text-xl font-heading font-bold text-slate-900 dark:text-white text-balance">Kế hoạch giảng dạy chi tiết</h2>
+                        <p id="mappingStatusText" aria-live="polite" class="text-slate-500 dark:text-slate-400 text-xs mt-0.5">Sẵn sàng khớp kế hoạch.</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button id="btnRunMapping" class="btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-semibold flex items-center shadow-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" title="Khớp lại kế hoạch bài giảng">
+                            <i data-lucide="refresh-cw" class="w-4 h-4 mr-1.5" aria-hidden="true"></i> Khớp lại kế hoạch
+                        </button>
+                        <button id="btnExportAllMapped" class="btn bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-full text-xs font-semibold flex items-center shadow-sm transition-all active:scale-95 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:outline-none" title="Xuất toàn bộ kế hoạch ra file Excel">
+                            <i data-lucide="file-spreadsheet" class="w-4 h-4 mr-1.5" aria-hidden="true"></i> Xuất toàn bộ (Excel)
+                        </button>
+                    </div>
+                </div>
+                <div id="mappingResultsContainer" class="flex flex-col gap-6 w-full"></div>
+            </div>
+
+            <!-- Statistics View (Tab 6) -->
+            <div id="statisticsView" class="hidden flex-col gap-6 w-full max-w-6xl mx-auto">
+                <div id="statisticsContainer" class="flex flex-col gap-6 w-full">
+                    <!-- Injected dynamically via StatisticsView.js -->
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- Main App Bundle (ES6 Modules) -->
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

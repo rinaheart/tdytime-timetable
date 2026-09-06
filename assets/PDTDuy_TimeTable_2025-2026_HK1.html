@@ -1,0 +1,2537 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TRƯỜNG ĐẠI HỌC Y - DƯỢC - Lịch tr&#236;nh giảng dạy</title>
+    <meta name="DC.Title" content="Đại học Huế">
+    <meta name="DC.Title" content="Hue University">
+    <meta name="DC.Title" content="Quản trị đại học">
+    <meta name="DC.Creator" content="Trung tâm Công nghệ Thông tin - Đại học Huế">
+    <meta name="DC.Creator" content="Hue University Information Technology Center">
+    <meta name="DC.Subject" content="Quản trị đại học">
+    <meta name="DC.Subject" content="Tranning, University Management System">
+    <meta name="DC.Subject" content="Đại học">
+    <meta name="DC.Subject" content="University">
+    <meta name="DC.Subject" content="Đào tạo">
+    <meta name="DC.Subject" content="Trainning">
+    <meta name="DC.Description" content="Quản trị đại học">
+    <meta name="DC.Publisher" content="Đại học Huế">
+    <meta name="DC.Publisher" content="Hue University">
+    <meta name="DC.Contributor" content="Trung tâm Công nghệ Thông tin - Đại học Huế">
+    <meta name="DC.Contributor" content="Hue University Information Technology Center">
+    <link href="/giangvien/css/bootstrap?v=eM3UDVICH-Ycd74S_UG2m-qKc9CZ3C7puI49PWdfYkg1" rel="stylesheet"/>
+
+    <link href="/giangvien/Themes/Default/bootstrap-customize.css" rel="stylesheet" />
+    <link href="/giangvien/Themes/Default/style.css" rel="stylesheet" />
+    <link href="/giangvien/css/bootstrap-datepicker3?v=HqV0RjwK_aay46RNhDcMe2X9wb46hRU5VliyR6GUCbU1" rel="stylesheet"/>
+
+    
+</head>
+<body>
+    <!-- header-->
+    <!-- Header and Menu -->
+<div class="container-fluid">
+    <div class="row hitec-title">
+        <div class="col-xs-9 nopadding">
+            <h1>TRƯỜNG ĐẠI HỌC Y - DƯỢC</h1>
+        </div>
+        <div class="col-xs-3 text-right" style="padding-top:3px;">
+            <!--
+            <a href="~/Message/Inbox" title="Tin nhắn">
+                <span class="glyphicon glyphicon-envelope"></span>
+                <span class="noti-unreadmessages"></span>
+            </a>
+            &nbsp;&nbsp;
+            <a href="~/Common/Event" title="Công việc - sự kiện">
+                <span class="glyphicon glyphicon-education"></span>
+                <span class="noti-workevents"></span>
+            </a>
+            -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 nopadding">
+            <nav class="navbar navbar-default hitec-navbar">
+                <div class="navbar-header">
+                    <button type="button" class="pull-left navbar-toggle" data-toggle="collapse" data-target="#menuMain">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand hitec-logo" href="/giangvien/">
+                        <img src="/giangvien/images/logo.png" alt="logo">
+                    </a>
+                </div>
+
+                <!-- menu main -->
+                <div class="collapse navbar-collapse" id="menuMain">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">Đào tạo - Giảng dạy <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="dropdown-header">Công tác giảng dạy</li>
+                                <li><a href="/giangvien/Teaching/CourseList">Kế hoạch giảng dạy</a></li>
+                                <li><a href="/giangvien/Teaching/TimeTable">Lịch trình giảng dạy</a></li>
+                                <li><a href="/giangvien/Teaching/ExamSchedule">Lịch thi</a></li>
+                                <li><a href="/giangvien/Teaching/ExamVisorSchedule">Coi thi</a></li>
+                                <li class="dropdown-header">Số liệu thống kê</li>
+                                <li><a href="/giangvien/Teaching/SurveyResult">Kết quả khảo sát giảng dạy</a></li>
+                                <li><a href="/giangvien/Teaching/Statistics">Thống kê giờ giảng</a></li>
+                                <li><a href="/giangvien/Teaching/WorkHours">Thống kê giờ chuẩn giảng dạy</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">Tác nghiệp &amp; Tra cứu thông tin<b class="caret"></b></a>
+                            <ul class="dropdown-menu multi-column columns-2">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <ul class="multi-column-dropdown">
+                                                <li class="dropdown-header">Hỗ trợ</li>
+                                                <li><a href="/giangvien/Consultant">Chủ nhiệm - Cố vấn học tập</a>
+                                                <li><a href="/giangvien/Teaching/Compensation">Đăng ký lịch dạy bù</a></li>
+                                                <li class="dropdown-header">Khảo thí</li>
+                                                <li><a href="/giangvien/Mark">Nhập điểm thi</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <ul class="multi-column-dropdown">
+                                                <li class="dropdown-header">Tra cứu thông tin</li>
+                                                <li><a href="/giangvien/Student/">Sinh viên</a></li>
+                                                <li><a href="/giangvien/Subject/">Học phần</a></li>
+                                                <li><a href="/giangvien/Course/">Lớp học phần</a></li>
+                                                <li><a href="/giangvien/StudyProgram/">Chương trình đào tạo</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Các application được cấp cho user -->
+                        <li>
+                            <a href="/giangvien/Application">Phần mềm &amp; Ứng dụng</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Học kỳ tác nghiệp -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 text-right">
+            <div id="divThietLapHocKy" class="dropdown" style="width:410px; float:right;">
+                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="hitec-year">
+                        Học kỳ: 1, năm học: 2025-2026
+                        <img src="/giangvien/images/icons/setting.png" alt="images setting">
+                    </span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+<form action="/giangvien/Account/SessionSetting" id="formThietLapHocKy" method="post" role="form"><input name="__RequestVerificationToken" type="hidden" value="13_mvDgE64jcWthfkvuEeYPa2nzmMpQWVzGFIolkYzUP7tTP8H0Fazkfv_6Lvusv_9EdtQxoOZbpDHHDHKHLG9ykq-QYalnA1nsGtftaqlNsdIkkiZdiB2WL1CehJSh7_ysF5FYI8zCyc30H3-IqleqvK1wdyKMSbwryTfdPXiLx-vN0tE8hH_OzFAPE_dinOejSVMLYctfqkeXadQAUb-8aOgA1" />                            <div class="row">
+                                <div class="col-xs-5">
+                                    <div class="form-group" style="padding-left:5px;">
+                                        <label for="namhoc" class="control-label">Năm học:</label>
+                                        <select name="namhoc" id="namhoc" class="form-control">
+                                                <option value="2026-2027">2026-2027</option>
+                                                <option value="2025-2026">2025-2026</option>
+                                                <option value="2024-2025">2024-2025</option>
+                                                <option value="2023-2024">2023-2024</option>
+                                                <option value="2022-2023">2022-2023</option>
+                                                <option value="2021-2022">2021-2022</option>
+                                                <option value="2020-2021">2020-2021</option>
+                                                <option value="2019-2020">2019-2020</option>
+                                                <option value="2018-2019">2018-2019</option>
+                                                <option value="2017-2018">2017-2018</option>
+                                                <option value="2016-2017">2016-2017</option>
+                                                <option value="2015-2016">2015-2016</option>
+                                                <option value="2014-2015">2014-2015</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 nopadding-left">
+                                    <div class="form-group">
+                                        <label for="hocky" class="control-label">Học kỳ:</label>
+                                        <select name="hocky" id="hocky" class="form-control">
+                                            <option value="1">Học kỳ 1</option>
+                                            <option value="2">Học kỳ 2</option>
+                                            <option value="3">Học kỳ hè</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3 nopadding-left">
+                                    <label class="control-label"></label>
+                                    <div class="form-control-static">
+                                        <button type="submit" class="btn btn-default" value="ok">
+                                            <img src="/giangvien/Images/Icons/accept16.png" alt="" />
+                                        </button>
+                                        <button type="button" class="btn btn-default" value="cancel" onclick="$('#divThietLapHocKy.open').removeClass('open');">
+                                            <img src="/giangvien/Images/Icons/Cancel_16.png" alt="" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+</form>                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Panel left and main content-->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left panel -->
+            <div class="col-fixed-200">
+                <div class="container-fluid nopadding">
+                    <div class="hitec-sidebar">
+
+    <div class="hitec-information">
+        <h5>
+            Phan Đức Th&#225;i Duy
+        </h5>
+        <p>
+            <img src="/giangvien/images/icons/people.png" alt="">
+            <a id="link_userProfile" href="/giangvien/Account/UserProfile">Thông tin cá nhân</a>
+        </p>
+        <p>
+            <img src="/giangvien/images/icons/curriculum_vitae16.png" alt="">
+            <a id="link_userProfile" href="/giangvien/CurriculumVitae">Lý lịch cán bộ - viên chức</a>
+        </p>
+        <!--
+        <p>
+            <img src="~/images/icons/setting.png" alt="">
+            <a id="link_userPassword" href="~/Account/Intergrated">Tích hợp tài khoản</a>
+        </p>
+        -->
+        <p>
+            <img src="/giangvien/images/icons/key.png" alt="">
+            <a id="link_userPassword" href="/giangvien/Account/ChangePassword">Đổi mật khẩu</a>
+        </p>
+
+        <p>
+            <img src="/giangvien/images/icons/logout.png" alt="">
+            <a id="link_userLogout" href="/giangvien/Account/Logout" onclick="return confirm('Thoát khỏi hệ thống')">Đăng xuất</a>
+        </p>
+    </div>
+<div class="hitec-general-function">
+    <h5>CÁC CHỨC NĂNG CHUNG</h5>
+    <p>
+        <img src="/giangvien/images/icons/book.png" alt="">
+        <a id="linkNews" href="/giangvien/Home">Tin tức - thông báo <span class="notification-news"></span></a>
+    </p>
+    <p>
+        <img src="/giangvien/images/icons/calendar.png" alt="">
+        <a id="linkCalendar" href="/giangvien/Common/Calendar">Lịch công tác <span class="notification-calendar"></span></a>
+    </p>
+    <p>
+        <img src="/giangvien/images/icons/message.png" alt="">
+        <a id="linkMessage" href="/giangvien/Message/Inbox">Tin nhắn <span class="notification-message"></span></a>
+    </p>
+    <p>
+        <img src="/giangvien/images/icons/calendar2.png" alt="">
+        <a id="linkEvent" href="/giangvien/Common/Event">Công việc - sự kiện <strong><span class="notification-event"></span></strong></a>
+    </p>
+</div>
+<!-- Layout dùng cho các view dạng một phần nội dung trong trang web -->
+
+<div class="hitec-notification">
+    <h5>TIN TỨC - THÔNG BÁO</h5>
+    <ul>
+            <li>
+                <a href="/giangvien/News/Content/danh-sach-hssv-duoc-mien-giam-hoc-phi-hoc-ky-i-nam-hoc-2021-2022-de-nghi-sinh-vien-cung-cap-so-tai-khoan-de-nhan-lai-hoc-phi/">Danh s&#225;ch HSSV được miễn giảm học ph&#237; học kỳ I năm học 2021 - 2022 (ĐỀ NGHỊ SINH VI&#202;N CUNG CẤP SỐ T&#192;I KHOẢN ĐỂ NHẬN LẠI HỌC PH&#205;) <small class="text-muted">(10/02/2022)</small></a>
+            </li>           
+            <li>
+                <a href="/giangvien/News/Content/cap-nhat-ngay-28-01-2020-thong-bao-ke-hoach-dang-ky-hoc-phan-tin-chi-hoc-ky-2-nam-hoc-2019-2020-khoi-cao-dang-trung-cap-he-chinh-quy/">(Cập nhật ng&#224;y 28/01/2020) Th&#244;ng b&#225;o Kế hoạch đăng k&#253; học phần t&#237;n chỉ học kỳ 2 năm học 2019-2020; Khối: Cao đẳng, Trung cấp; Hệ: Ch&#237;nh quy <small class="text-muted">(20/01/2020)</small></a>
+            </li>           
+            <li>
+                <a href="/giangvien/News/Content/cap-nhat-sang-06-01-2020-danh-sach-hoc-sinh-sinh-vien-cam-thi-hoc-ky-i-nam-hoc-2019-2020/">(Cập nhật S&#225;ng 06.01.2020)_Danh s&#225;ch học sinh - sinh vi&#234;n cấm thi học kỳ I năm học 2019-2020 <small class="text-muted">(18/12/2019)</small></a>
+            </li>           
+            <li>
+                <a href="/giangvien/News/Content/lich-thi-hoc-ky-i-nam-hoc-2019-2020-doi-tuong-cao-dang-trung-cap-he-chinh-quy-luu-y-hssv-dang-nhap-pm-de-biet-chinh-xac-phong-thi-ngay-thi/">Lịch thi học kỳ I năm học 2019-2020; Đối tượng: Cao đẳng, Trung cấp; Hệ: Ch&#237;nh quy (Lưu &#253;: HSSV đăng nhập PM để biết ch&#237;nh x&#225;c ph&#242;ng thi, ng&#224;y thi) <small class="text-muted">(27/11/2019)</small></a>
+            </li>           
+            <li>
+                <a href="/giangvien/News/Content/thong-bao-ve-viec-dang-ky-mon-hoc-mo-dun-hoc-ky-i-nam-hoc-2026-2027-trinh-do-cao-dang-he-chinh-quy/">TH&#212;NG B&#193;O Về việc đăng k&#253; m&#244;n học/m&#244; đun học kỳ I năm học 2026-2027; Tr&#236;nh độ cao đẳng, hệ ch&#237;nh quy <small class="text-muted">(17/08/2026)</small></a>
+            </li>           
+    </ul>
+</div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!-- Main content -->
+            <div class="col-xs-12 col-offset-200">
+                <div class="hitec-content">
+                    <img id="ajax-loader" src="/giangvien/images/icons/ajax-loader.gif" alt="" />
+                    
+
+<h2>LỊCH TRÌNH GIẢNG DẠY</h2>
+<div class="container-fluid text-right" style="margin-bottom:5px">
+    <a href="/giangvien/Teaching/TimeTable/" class="btn btn-default disabled">Lịch trình giảng dạy toàn học kỳ</a>
+    <a href="/giangvien/Teaching/TimeTable/Week" class="btn btn-default">Thời khóa biểu tuần hiện tại</a>
+    <a href="/giangvien/Teaching/TimeTable/Summary" class="btn btn-default">Thống kê khối lượng giảng dạy</a>
+</div>
+<div class="container-fluid">
+    <table class=" table table-bordered">
+        <thead>
+            <tr>
+                <th style="width:14%" class="text-center">Thứ 2</th>
+                <th style="width:14%" class="text-center">Thứ 3</th>
+                <th style="width:14%" class="text-center">Thứ 4</th>
+                <th style="width:14%" class="text-center">Thứ 5</th>
+                <th style="width:14%" class="text-center">Thứ 6</th>
+                <th style="width:14%" class="text-center">Thứ 7</th>
+                <th style="width:auto" class="text-center">Chủ nhật</th>
+            </tr>
+        </thead>
+        <tbody>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 01/09/2025 đến ng&#224;y 07/09/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            1 - 4 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            1 - 4 [.K.302]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 08/09/2025 đến ng&#224;y 14/09/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.003/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 3 - DS 13G"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.403<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.003</strong>
+                                            <br />
+                                            1 - 4 [.K.403]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            1 - 4 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.108<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            1 - 4 [.K.108]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.001/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 1 - DS 13E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.207<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.001</strong>
+                                            <br />
+                                            6 - 9 [.K.207]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.108<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.108]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 15/09/2025 đến ng&#224;y 21/09/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.003/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 3 - DS 13G"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.403<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.003</strong>
+                                            <br />
+                                            1 - 4 [.K.403]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            1 - 4 [.K.302]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            1 - 4 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            1 - 4 [.K.302]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            1 - 4 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.108<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            1 - 4 [.K.108]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.001/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 1 - DS 13E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.207<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.001</strong>
+                                            <br />
+                                            6 - 9 [.K.207]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.108<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            6 - 9 [.K.108]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 22/09/2025 đến ng&#224;y 28/09/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.003/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 3 - DS 13G"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.403<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.003</strong>
+                                            <br />
+                                            1 - 4 [.K.403]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            1 - 4 [.K.302]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            1 - 4 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.CT_DAUKHOA.004/"
+                                           title="Tuần sinh hoạt C&#244;ng d&#226;n - Nh&#243;m 4 - ĐD 20ABCDEFGHIKMN"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: H.HT 400<br />Tiết: 1 - 2 (Thực dạy <b>2</b> tiết)<br />Giáo viên: Phạm Hồng Minh Hoàng">
+                                            <strong>CT_DAUKHOA.004</strong>
+                                            <br />
+                                            1 - 2 [H.HT 400]
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            1 - 4 [.K.302]
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.CT_DAUKHOA.004/"
+                                           title="Tuần sinh hoạt C&#244;ng d&#226;n - Nh&#243;m 4 - ĐD 20ABCDEFGHIKMN"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: H.HT 400<br />Tiết: 3 - 4 (Thực dạy <b>2</b> tiết)<br />Giáo viên: Lê Thị Thanh Thủy">
+                                            <strong>CT_DAUKHOA.004</strong>
+                                            <br />
+                                            3 - 4 [H.HT 400]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.CT_DAUKHOA.004/"
+                                           title="Tuần sinh hoạt C&#244;ng d&#226;n - Nh&#243;m 4 - ĐD 20ABCDEFGHIKMN"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: H.HT 400<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phạm Hồng Minh Hoàng">
+                                            <strong>CT_DAUKHOA.004</strong>
+                                            <br />
+                                            1 - 4 [H.HT 400]
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            1 - 4 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.CT_DAUKHOA.005/"
+                                           title="Tuần sinh hoạt C&#244;ng d&#226;n - Nh&#243;m 5 - DS 15ABCDEF, HS 14, XN 15, CSSĐ 02, YHCT 01"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: H.HT 400<br />Tiết: 1 - 2 (Thực dạy <b>2</b> tiết)<br />Giáo viên: Phạm Hồng Minh Hoàng">
+                                            <strong>CT_DAUKHOA.005</strong>
+                                            <br />
+                                            1 - 2 [H.HT 400]
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.CT_DAUKHOA.005/"
+                                           title="Tuần sinh hoạt C&#244;ng d&#226;n - Nh&#243;m 5 - DS 15ABCDEF, HS 14, XN 15, CSSĐ 02, YHCT 01"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: H.HT 400<br />Tiết: 3 - 4 (Thực dạy <b>2</b> tiết)<br />Giáo viên: Lê Thị Thanh Thủy">
+                                            <strong>CT_DAUKHOA.005</strong>
+                                            <br />
+                                            3 - 4 [H.HT 400]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.001/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 1 - DS 13E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.207<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.001</strong>
+                                            <br />
+                                            6 - 9 [.K.207]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.CT_DAUKHOA.004/"
+                                           title="Tuần sinh hoạt C&#244;ng d&#226;n - Nh&#243;m 4 - ĐD 20ABCDEFGHIKMN"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: H.HT 400<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Trần Hữu Thượng">
+                                            <strong>CT_DAUKHOA.004</strong>
+                                            <br />
+                                            6 - 9 [H.HT 400]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.CT_DAUKHOA.004/"
+                                           title="Tuần sinh hoạt C&#244;ng d&#226;n - Nh&#243;m 4 - ĐD 20ABCDEFGHIKMN"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: H.HT 400<br />Tiết: 6 - 7 (Thực dạy <b>2</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>CT_DAUKHOA.004</strong>
+                                            <br />
+                                            6 - 7 [H.HT 400]
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.CT_DAUKHOA.004/"
+                                           title="Tuần sinh hoạt C&#244;ng d&#226;n - Nh&#243;m 4 - ĐD 20ABCDEFGHIKMN"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: H.HT 400<br />Tiết: 8 - 9 (Thực dạy <b>2</b> tiết)<br />Giáo viên: Võ Thùy Dung">
+                                            <strong>CT_DAUKHOA.004</strong>
+                                            <br />
+                                            8 - 9 [H.HT 400]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 29/09/2025 đến ng&#224;y 05/10/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.003/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 3 - DS 13G"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: <br />Tiết: 1 - 3 (Thực dạy <b>3</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.003</strong>
+                                            <br />
+                                            1 - 3 []
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.002/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 2 - DS 13F"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.303<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.002</strong>
+                                            <br />
+                                            1 - 4 [.K.303]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.002/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 2 - DS 13F"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: <br />Tiết: 6 - 8 (Thực dạy <b>3</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.002</strong>
+                                            <br />
+                                            6 - 8 []
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.001/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 1 - DS 13E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.001</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.CT_DAUKHOA.005/"
+                                           title="Tuần sinh hoạt C&#244;ng d&#226;n - Nh&#243;m 5 - DS 15ABCDEF, HS 14, XN 15, CSSĐ 02, YHCT 01"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: H.HT 400<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Trần Hữu Thượng">
+                                            <strong>CT_DAUKHOA.005</strong>
+                                            <br />
+                                            6 - 9 [H.HT 400]
+                                        </a>
+                                    </p>
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 06/10/2025 đến ng&#224;y 12/10/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.002/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 2 - DS 13F"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.303<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.002</strong>
+                                            <br />
+                                            1 - 4 [.K.303]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 13/10/2025 đến ng&#224;y 19/10/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.003/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 3 - DS 13G"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.003</strong>
+                                            <br />
+                                            1 - 4 [.K.302]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.002/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 2 - DS 13F"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.303<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.002</strong>
+                                            <br />
+                                            1 - 4 [.K.303]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.003/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 3 - DS 13G"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.201<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.003</strong>
+                                            <br />
+                                            1 - 4 [.K.201]
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.CT_DAUKHOA.005/"
+                                           title="Tuần sinh hoạt C&#244;ng d&#226;n - Nh&#243;m 5 - DS 15ABCDEF, HS 14, XN 15, CSSĐ 02, YHCT 01"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: H.HT 400<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phạm Hồng Minh Hoàng">
+                                            <strong>CT_DAUKHOA.005</strong>
+                                            <br />
+                                            1 - 4 [H.HT 400]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.002/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 2 - DS 13F"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.303<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.002</strong>
+                                            <br />
+                                            6 - 9 [.K.303]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.001/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 1 - DS 13E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.001</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.208<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.208]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.CT_DAUKHOA.005/"
+                                           title="Tuần sinh hoạt C&#244;ng d&#226;n - Nh&#243;m 5 - DS 15ABCDEF, HS 14, XN 15, CSSĐ 02, YHCT 01"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: H.HT 400<br />Tiết: 6 - 7 (Thực dạy <b>2</b> tiết)<br />Giáo viên: Võ Thùy Dung">
+                                            <strong>CT_DAUKHOA.005</strong>
+                                            <br />
+                                            6 - 7 [H.HT 400]
+                                        </a>
+                                    </p>
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.CT_DAUKHOA.005/"
+                                           title="Tuần sinh hoạt C&#244;ng d&#226;n - Nh&#243;m 5 - DS 15ABCDEF, HS 14, XN 15, CSSĐ 02, YHCT 01"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: H.HT 400<br />Tiết: 8 - 9 (Thực dạy <b>2</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>CT_DAUKHOA.005</strong>
+                                            <br />
+                                            8 - 9 [H.HT 400]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 20/10/2025 đến ng&#224;y 26/10/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.003/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 3 - DS 13G"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.003</strong>
+                                            <br />
+                                            1 - 4 [.K.302]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.002/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 2 - DS 13F"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: <br />Tiết: 1 - 3 (Thực dạy <b>3</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.002</strong>
+                                            <br />
+                                            1 - 3 []
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.001/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 1 - DS 13E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: <br />Tiết: 1 - 3 (Thực dạy <b>3</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.001</strong>
+                                            <br />
+                                            1 - 3 []
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.002/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 2 - DS 13F"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.303<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.002</strong>
+                                            <br />
+                                            6 - 9 [.K.303]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.001/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 1 - DS 13E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.001</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: <br />Tiết: 6 - 8 (Thực dạy <b>3</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 8 []
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 27/10/2025 đến ng&#224;y 02/11/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.003/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 3 - DS 13G"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: <br />Tiết: 1 - 3 (Thực dạy <b>3</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.003</strong>
+                                            <br />
+                                            1 - 3 []
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.002/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 2 - DS 13F"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: <br />Tiết: 6 - 8 (Thực dạy <b>3</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.002</strong>
+                                            <br />
+                                            6 - 8 []
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 03/11/2025 đến ng&#224;y 09/11/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.003/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 3 - DS 13G"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: <br />Tiết: 1 - 3 (Thực dạy <b>3</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.003</strong>
+                                            <br />
+                                            1 - 3 []
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 10/11/2025 đến ng&#224;y 16/11/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.003/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 3 - DS 13G"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.305<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.003</strong>
+                                            <br />
+                                            1 - 4 [.K.305]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.002/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 2 - DS 13F"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.002</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.001/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 1 - DS 13E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.001</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.307<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            6 - 9 [.K.307]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.307<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            6 - 9 [.K.307]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 17/11/2025 đến ng&#224;y 23/11/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.001/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 1 - DS 13E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: <br />Tiết: 6 - 8 (Thực dạy <b>3</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.001</strong>
+                                            <br />
+                                            6 - 8 []
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.402<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            6 - 9 [.K.402]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 24/11/2025 đến ng&#224;y 30/11/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.003/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 3 - DS 13G"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.305<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.003</strong>
+                                            <br />
+                                            1 - 4 [.K.305]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.001/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 1 - DS 13E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.106<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.001</strong>
+                                            <br />
+                                            1 - 4 [.K.106]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            6 - 9 [.K.302]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 01/12/2025 đến ng&#224;y 07/12/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.001/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 1 - DS 13E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.107<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.001</strong>
+                                            <br />
+                                            1 - 4 [.K.107]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.106<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            1 - 4 [.K.106]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.108<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            6 - 9 [.K.108]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.002/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 2 - DS 13F"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.301<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.002</strong>
+                                            <br />
+                                            6 - 9 [.K.301]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.106<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.106]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 08/12/2025 đến ng&#224;y 14/12/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.003/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 3 - DS 13G"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.305<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.003</strong>
+                                            <br />
+                                            1 - 4 [.K.305]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            1 - 4 [.K.302]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            1 - 4 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            1 - 4 [.K.302]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            1 - 4 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.001/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 1 - DS 13E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.204<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.001</strong>
+                                            <br />
+                                            1 - 4 [.K.204]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.002/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 2 - DS 13F"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.105<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.002</strong>
+                                            <br />
+                                            1 - 4 [.K.105]
+                                        </a>
+                                    </p>
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.205<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            6 - 9 [.K.205]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 15/12/2025 đến ng&#224;y 21/12/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            1 - 4 [.K.302]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            1 - 4 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            1 - 4 [.K.302]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1092.002/"
+                                           title="Thực h&#224;nh Nghi&#234;n cứu khoa học - Nh&#243;m 2 - DS 13F"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.202<br />Tiết: 1 - 4 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1092.002</strong>
+                                            <br />
+                                            1 - 4 [.K.202]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.304<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.304]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.302<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.302]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.103<br />Tiết: 6 - 9 (Thực dạy <b>4</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 9 [.K.103]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="hitec-td-tkbTuan">
+                            Từ ng&#224;y: 22/12/2025 đến ng&#224;y 28/12/2025
+                        </td>
+                    </tr>
+            <!-- Buổi sáng -->
+                    <tr>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.101<br />Tiết: 1 - 4 (Thực dạy <b>0</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            1 - 4 [.K.101]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.001/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 1 - ĐD 18A"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.101<br />Tiết: 1 - 4 (Thực dạy <b>0</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.001</strong>
+                                            <br />
+                                            1 - 4 [.K.101]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                            <td class="hitec-td-tkbSang ">
+                            </td>
+                    </tr>
+            <!-- Buổi chiều -->
+                    <tr>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.005/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 5 - ĐD 18E"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.101<br />Tiết: 6 - 9 (Thực dạy <b>0</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.005</strong>
+                                            <br />
+                                            6 - 9 [.K.101]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                                    <p>
+                                        <a href="/giangvien/Course/Details/2025-2026.1.MHCĐO1023.003/"
+                                           title="Dịch tễ học v&#224; THNCKH - Nh&#243;m 3 - ĐD 18C, HS 12"
+                                           data-toggle="popover"
+                                           data-trigger="hover"
+                                           data-placement="bottom"
+                                           data-html="true"
+                                           data-content="Phòng học: .K.101<br />Tiết: 6 - 7 (Thực dạy <b>0</b> tiết)<br />Giáo viên: Phan Đức Thái Duy">
+                                            <strong>MHCĐO1023.003</strong>
+                                            <br />
+                                            6 - 7 [.K.101]
+                                        </a>
+                                    </p>
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                            <td class="hitec-td-tkbChieu ">
+                            </td>
+                    </tr>
+            <!-- Buổi tối -->
+                    <tr>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                            <td class="hitec-td-tkbToi ">
+                            </td>
+                    </tr>
+
+        </tbody>
+    </table>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid nopadding">
+    <footer>
+        <div class="row">
+            <div class="col-xs-12 text-center nopadding">
+            <!--
+                <p>&copy; Trường Đại học Khoa học – Đại học Huế</p>
+                <p>Địa chỉ: 77 Nguyễn Huệ – Thành phố Huế</p>
+                <p>Điện thoại: 0234.3823290 – Fax: 0234.3824901</p>
+                <p>Website: <a href="http://www.husc.edu.vn" target="_blank">http://www.husc.edu.vn</a></p>
+            -->
+            </div>
+        </div>
+    </footer>
+</div>
+
+    <!-- for main popup dialog -->
+    <div id="dialogMain" class="modal fade" role="dialog" style="margin-top:40px; display:none"></div>
+    <!-- Scripts-->
+    <script src="/giangvien/js/jquery?v=JVBM4Dk7eZ-fjWvmxvoCeVR5MAt_3YXn4K7MRdHsuR81"></script>
+
+    <script src="/giangvien/js/bootstrap?v=M4Nk6kIOwMFflsEKET0iPL9i5YBqbzMzvUOrd8gyCnw1"></script>
+
+    <script src="/giangvien/js/bootstrap-datepicker?v=YOtide9jtVl-6EDJkfMYY-JY5I2KV8SAqPBEKsnI2jI1"></script>
+
+    <script src="/giangvien/Themes/ums.teacher.js"></script>
+    <script src="/giangvien/Themes/ums.message.js"></script>
+    <script language="javascript" type="text/javascript">
+        applicationUrl = "https://cd.huemed-univ.edu.vn/giangvien/";
+        $(document).ready(function () {
+            //teacher_EventChecking();
+            //message_CountUnreadMessage();
+            //window.setInterval(teacher_EventChecking, 300000);
+            //window.setInterval(message_CountUnreadMessage, 300000);
+            get_notifications();
+            window.setInterval(get_notifications, 300000);
+            $(".hitec-datepicker").datepicker({
+                format: "dd/mm/yyyy",
+                language: "vi",
+                autoclose: true,
+                todayHighlight: true,
+                weekStart: 1
+            });
+            $('#dialogMain').on('hidden.bs.modal', function () {
+                $("#dialogMain").html("");
+            });
+            $('#divThietLapHocKy .dropdown-menu').on({
+                "click": function (e) {
+                    e.stopPropagation();
+                }
+            });
+        });
+    </script>
+    
+    <script language="javasript" type="text/javascript">
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+    </script>
+
+</body>
+</html>

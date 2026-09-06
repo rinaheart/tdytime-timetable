@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lịch trình giảng dạy — Trích xuất &amp; Báo cáo</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#F4F6F6;
+    --surface:#FFFFFF;
+    --surface-2:#EEF2F2;
+    --ink:#152B2E;
+    --ink-soft:#4C6265;
+    --muted:#7C9093;
+    --border:#DBE4E4;
+    --primary:#123C40;
+    --primary-2:#1E5A5F;
+    --primary-soft:#E3EDED;
+    --accent:#D98E04;
+    --accent-soft:#FBF0D9;
+    --ok:#2E7D5B;
+    --warn:#B5461B;
+    --radius:10px;
+    --shadow:0 1px 2px rgba(18,60,64,.06), 0 8px 24px -12px rgba(18,60,64,.18);
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    font-size:15px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;}
+  .display{font-family:'Space Grotesk',sans-serif;}
+
+  /* ---------- Header ---------- */
+  .app-header{
+    background:linear-gradient(180deg, var(--primary) 0%, #0D2E31 100%);
+    color:#fff;
+    padding:28px 0 26px;
+    border-bottom:4px solid var(--accent);
+  }
+  .app-header .eyebrow{
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:11.5px;
+    font-weight:600;
+    color:#9FCBC8;
+    display:flex; align-items:center; gap:8px;
+  }
+  .app-header h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:26px;
+    margin:6px 0 4px;
+    letter-spacing:-.01em;
+  }
+  .app-header p{
+    color:#C7DBDA;
+    margin:0;
+    font-size:14.5px;
+  }
+  .week-glyph{width:26px;height:26px;flex:0 0 auto;}
+  .week-glyph rect.cell{fill:#1E5A5F;stroke:#3F7B7E;stroke-width:1;}
+  .week-glyph rect.cell.on{fill:var(--accent);stroke:var(--accent);}
+
+  /* ---------- Layout shell ---------- */
+  .shell{max-width:1240px;margin:0 auto;padding:26px 20px 60px;}
+  .card-panel{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+
+  /* ---------- Dropzone ---------- */
+  .dropzone{
+    border:2px dashed #B8CBCB;
+    border-radius:var(--radius);
+    padding:34px 22px;
+    text-align:center;
+    background:var(--surface);
+    transition:border-color .15s ease, background .15s ease;
+    cursor:pointer;
+  }
+  .dropzone:hover, .dropzone.drag{
+    border-color:var(--accent);
+    background:var(--accent-soft);
+  }
+  .dropzone .icon{font-size:30px;color:var(--primary-2);}
+  .dropzone strong{color:var(--primary);}
+  .dropzone small{color:var(--muted);}
+
+  /* ---------- Summary cards ---------- */
+  .stat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+  @media (max-width: 900px){ .stat-grid{grid-template-columns:repeat(2,1fr);} }
+  .stat-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-left:4px solid var(--primary-2);
+    border-radius:var(--radius);
+    padding:14px 16px;
+  }
+  .stat-card .num{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:24px;color:var(--primary);line-height:1;}
+  .stat-card .lbl{font-size:12px;color:var(--ink-soft);margin-top:4px;letter-spacing:.02em;}
+  .stat-card.accent{border-left-color:var(--accent);}
+
+  /* ---------- Tabs / sidebar list ---------- */
+  .mode-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+  .mode-tab{
+    border:1px solid var(--border);
+    background:var(--surface);
+    color:var(--ink-soft);
+    padding:7px 13px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .12s ease;
+  }
+  .mode-tab:hover{border-color:var(--primary-2);color:var(--primary);}
+  .mode-tab.active{background:var(--primary);border-color:var(--primary);color:#fff;}
+
+  .side-list{max-height:560px;overflow-y:auto;}
+  .side-item{
+    padding:10px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    border:1px solid transparent;
+    margin-bottom:4px;
+  }
+  .side-item:hover{background:var(--surface-2);}
+  .side-item.active{background:var(--primary-soft);border-color:var(--primary-2);}
+  .side-item .t1{font-weight:600;font-size:13.5px;color:var(--ink);}
+  .side-item .t2{font-size:11.5px;color:var(--muted);}
+  .side-item .count{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--primary-2);
+    background:var(--surface-2);
+    padding:1px 6px;
+    border-radius:5px;
+  }
+
+  /* ---------- Week-dots (signature element) ---------- */
+  .week-dots{display:flex;gap:4px;}
+  .week-dot{
+    width:22px;height:22px;
+    border-radius:5px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:9.5px;font-weight:700;
+    background:var(--surface-2);
+    color:var(--muted);
+    border:1px solid var(--border);
+  }
+  .week-dot.on{background:var(--primary);color:#fff;border-color:var(--primary);}
+  .week-dot.on.pm{background:var(--accent);border-color:var(--accent);}
+
+  /* ---------- Class detail ---------- */
+  .class-block{
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    margin-bottom:18px;
+    overflow:hidden;
+  }
+  .class-block__head{
+    background:var(--surface-2);
+    padding:14px 16px;
+    border-bottom:1px solid var(--border);
+  }
+  .class-block__head h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:16.5px;
+    font-weight:700;
+    margin:0 0 3px;
+    color:var(--primary);
+  }
+  .class-block__meta{font-size:12.5px;color:var(--ink-soft);}
+  .class-block__meta .sep{margin:0 8px;color:var(--border);}
+  .code-pill{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    background:#fff;
+    border:1px solid var(--border);
+    padding:1px 7px;
+    border-radius:5px;
+    color:var(--primary-2);
+  }
+
+  table.sched{width:100%;border-collapse:collapse;font-size:13.5px;}
+  table.sched th{
+    background:var(--surface);
+    text-align:left;
+    padding:8px 12px;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--muted);
+    border-bottom:1px solid var(--border);
+  }
+  table.sched td{
+    padding:8px 12px;
+    border-bottom:1px solid #EEF2F2;
+  }
+  table.sched tr:last-child td{border-bottom:none;}
+  table.sched td.num{font-family:'JetBrains Mono',monospace;color:var(--primary-2);}
+
+  .btn-primary-solid{
+    background:var(--primary);border-color:var(--primary);
+  }
+  .btn-primary-solid:hover{background:var(--primary-2);border-color:var(--primary-2);}
+  .btn-accent{
+    background:var(--accent);border-color:var(--accent);color:#fff;
+  }
+  .btn-accent:hover{background:#BF7C03;border-color:#BF7C03;color:#fff;}
+
+  .empty-hint{
+    text-align:center;
+    padding:60px 20px;
+    color:var(--muted);
+  }
+  .empty-hint .icon{font-size:34px;margin-bottom:10px;color:var(--primary-2);opacity:.5;}
+
+  .footer-note{font-size:12px;color:var(--muted);margin-top:30px;text-align:center;}
+</style>
+</head>
+<body>
+
+<div id="app">
+
+  <header class="app-header">
+    <div class="shell" style="padding:0 20px;">
+      <div class="eyebrow">
+        <svg class="week-glyph" viewBox="0 0 28 28">
+          <rect class="cell" x="1" y="1" width="7" height="7" rx="1.5"></rect>
+          <rect class="cell on" x="10.5" y="1" width="7" height="7" rx="1.5"></rect>
+          <rect class="cell" x="20" y="1" width="7" height="7" rx="1.5"></rect>
+          <rect class="cell" x="1" y="10.5" width="7" height="7" rx="1.5"></rect>
+          <rect class="cell on" x="10.5" y="10.5" width="7" height="7" rx="1.5"></rect>
+          <rect class="cell" x="20" y="10.5" width="7" height="7" rx="1.5"></rect>
+          <rect class="cell" x="1" y="20" width="7" height="7" rx="1.5"></rect>
+          <rect class="cell" x="10.5" y="20" width="7" height="7" rx="1.5"></rect>
+          <rect class="cell" x="20" y="20" width="7" height="7" rx="1.5"></rect>
+        </svg>
+        <span>Công cụ trích xuất lịch giảng</span>
+      </div>
+      <h1>Lịch trình giảng dạy — Báo cáo &amp; Xuất file</h1>
+      <p>Tải lên file HTML "Lịch trình giảng dạy toàn học kỳ" từ hệ thống Quản trị đại học — xem báo cáo theo lớp học phần, môn, lớp sinh viên, và xuất Excel/CSV. Toàn bộ xử lý diễn ra ngay trên trình duyệt, không gửi dữ liệu đi đâu cả.</p>
+    </div>
+  </header>
+
+  <div class="shell">
+
+    <!-- ============ STEP 1: UPLOAD ============ -->
+    <div v-if="!parsed" class="card-panel p-4 mb-4">
+      <div
+        class="dropzone"
+        :class="{drag:isDragging}"
+        @click="$refs.fileInput.click()"
+        @dragover.prevent="isDragging=true"
+        @dragleave.prevent="isDragging=false"
+        @drop.prevent="onDrop"
+      >
+        <div class="icon">⤒</div>
+        <div class="mt-2"><strong>Bấm để chọn file</strong> hoặc kéo-thả file .html vào đây</div>
+        <small>Ví dụ: PDTDuy_TimeTable_2025-2026_HK1.html (xuất từ trang "Lịch trình giảng dạy toàn học kỳ")</small>
+        <input ref="fileInput" type="file" accept=".html,.htm" class="d-none" @change="onFileChange">
+      </div>
+      <div v-if="parseError" class="alert alert-danger mt-3 mb-0">
+        <strong>Không đọc được file:</strong> {{ parseError }}
+      </div>
+    </div>
+
+    <!-- ============ STEP 2: MAIN APP ============ -->
+    <div v-else>
+
+      <!-- File / teacher bar -->
+      <div class="card-panel p-3 mb-3 d-flex flex-wrap align-items-center gap-3">
+        <div class="d-flex align-items-center gap-2">
+          <span class="badge text-bg-light border" style="color:var(--ink-soft)">📄 {{ fileName }}</span>
+          <button class="btn btn-sm btn-outline-secondary" @click="resetAll">Tải file khác</button>
+        </div>
+        <div class="d-flex align-items-center gap-2 ms-auto">
+          <label class="fw-semibold" style="font-size:13.5px;color:var(--ink-soft)">Giáo viên:</label>
+          <select class="form-select form-select-sm" style="min-width:220px" v-model="selectedTeacher">
+            <option v-for="t in teacherList" :key="t" :value="t">{{ t }} ({{ teacherCount(t) }} buổi)</option>
+          </select>
+        </div>
+      </div>
+
+      <div v-if="!selectedTeacher" class="empty-hint card-panel">
+        <div class="icon">👤</div>
+        Chọn một giáo viên ở trên để xem báo cáo lịch giảng.
+      </div>
+
+      <template v-else>
+        <!-- Summary -->
+        <div class="stat-grid mb-4">
+          <div class="stat-card">
+            <div class="num">{{ summary.tongGio }}</div>
+            <div class="lbl">Tổng số giờ (tiết)</div>
+          </div>
+          <div class="stat-card">
+            <div class="num">{{ summary.tongBuoi }}</div>
+            <div class="lbl">Tổng số buổi</div>
+          </div>
+          <div class="stat-card">
+            <div class="num">{{ summary.tongMon }}</div>
+            <div class="lbl">Tổng số môn</div>
+          </div>
+          <div class="stat-card">
+            <div class="num">{{ summary.tongLop }}</div>
+            <div class="lbl">Tổng số lớp học phần</div>
+          </div>
+          <div class="stat-card accent">
+            <div class="num">{{ summary.tongLopSV }}</div>
+            <div class="lbl">Tổng số lớp SV</div>
+          </div>
+        </div>
+
+        <div class="row g-3">
+          <!-- Sidebar -->
+          <div class="col-lg-4">
+            <div class="card-panel p-3">
+              <div class="mode-tabs">
+                <div class="mode-tab" :class="{active:mode==='lop'}" @click="setMode('lop')">Lớp học phần</div>
+                <div class="mode-tab" :class="{active:mode==='mon'}" @click="setMode('mon')">Môn</div>
+                <div class="mode-tab" :class="{active:mode==='lopsv'}" @click="setMode('lopsv')">Lớp SV</div>
+                <div class="mode-tab" :class="{active:mode==='all'}" @click="setMode('all')">Toàn bộ</div>
+              </div>
+
+              <div v-if="mode!=='all'" class="side-list">
+                <div
+                  v-for="item in sideItems"
+                  :key="item.key"
+                  class="side-item d-flex justify-content-between align-items-center"
+                  :class="{active:selectedKey===item.key}"
+                  @click="selectedKey=item.key"
+                >
+                  <div>
+                    <div class="t1">{{ item.label }}</div>
+                    <div class="t2" v-if="item.sub">{{ item.sub }}</div>
+                  </div>
+                  <span class="count">{{ item.count }} lớp</span>
+                </div>
+              </div>
+              <div v-else class="text-center py-4" style="color:var(--muted);font-size:13px;">
+                Hiển thị toàn bộ {{ summary.tongLop }} lớp học phần của {{ selectedTeacher }}.
+              </div>
+            </div>
+          </div>
+
+          <!-- Detail -->
+          <div class="col-lg-8">
+            <div v-if="displayedGroups.length===0" class="empty-hint card-panel">
+              <div class="icon">🔍</div>
+              Chọn một mục ở danh sách bên trái để xem lịch giảng chi tiết.
+            </div>
+
+            <template v-else>
+              <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+                <div style="font-size:13px;color:var(--ink-soft)">
+                  Đang xem <strong>{{ displayedGroups.length }}</strong> lớp học phần
+                  — tổng <strong>{{ viewTotals.gio }}</strong> giờ, <strong>{{ viewTotals.buoi }}</strong> buổi
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-sm btn-primary-solid text-white" @click="exportExcel">⇩ Xuất Excel (.xlsx)</button>
+                  <button class="btn btn-sm btn-accent" @click="exportCSV">⇩ Xuất CSV</button>
+                </div>
+              </div>
+
+              <div v-for="g in displayedGroups" :key="g.code" class="class-block">
+                <div class="class-block__head">
+                  <h3>{{ g.title }}</h3>
+                  <div class="class-block__meta">
+                    <span class="code-pill">{{ shortCode(g.code) }}</span>
+                    <span class="sep">|</span>
+                    Tổng số giờ: <strong>{{ g.tongGio }} giờ</strong>
+                    <span class="sep">|</span>
+                    Tổng số buổi: <strong>{{ g.sessions.length }} buổi</strong>
+                    <span class="sep">|</span>
+                    Từ ngày {{ g.first }} đến ngày {{ g.last }}
+                  </div>
+                  <div class="mt-2 week-dots">
+                    <div
+                      v-for="d in ['T2','T3','T4','T5','T6','T7','CN']"
+                      :key="d"
+                      class="week-dot"
+                      :class="{on:g.daySet.has(d), pm:g.daySet.has(d) && g.pmOnly.has(d)}"
+                    >{{ d }}</div>
+                  </div>
+                </div>
+                <table class="sched">
+                  <thead>
+                    <tr>
+                      <th style="width:44px;">STT</th>
+                      <th>Thứ, ngày</th>
+                      <th>Buổi</th>
+                      <th>Tiết</th>
+                      <th>Số tiết</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(s,idx) in g.sessions" :key="idx">
+                      <td class="mono">{{ idx+1 }}</td>
+                      <td>{{ s.day }}, {{ s.dateStr }}</td>
+                      <td>{{ s.buoi }}</td>
+                      <td class="mono">{{ s.tietRange }}</td>
+                      <td class="num">{{ s.soTiet }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </template>
+          </div>
+        </div>
+      </template>
+    </div>
+
+    <p class="footer-note">Ghi chú: "Số tiết" được tính trực tiếp từ khoảng Tiết (VD: Tiết 6–7 → 2 tiết), không dùng thông tin "Thực dạy" trong file gốc. Các lớp "Tuần sinh hoạt Công dân" được bỏ qua.</p>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@3.4.31/dist/vue.global.prod.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const { createApp } = Vue;
+
+const DAYS = ['T2','T3','T4','T5','T6','T7','CN'];
+const BUOI_CLASS = {
+  'hitec-td-tkbSang': 'Sáng',
+  'hitec-td-tkbChieu': 'Chiều',
+  'hitec-td-tkbToi': 'Tối',
+};
+const BUOI_ORDER = { 'Sáng': 0, 'Chiều': 1, 'Tối': 2 };
+
+function isSHCD(mon) {
+  const m = (mon || '').toLowerCase();
+  return m.includes('sinh hoạt') && m.includes('công dân');
+}
+
+function parseDDMMYYYY(s) {
+  const [d, m, y] = s.split('/').map(Number);
+  return new Date(y, m - 1, d);
+}
+
+function fmtDate(d) {
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const yyyy = d.getFullYear();
+  return `${dd}/${mm}/${yyyy}`;
+}
+
+function removeTones(str) {
+  return str
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd').replace(/Đ/g, 'D')
+    .replace(/[^a-zA-Z0-9_\-]+/g, '_')
+    .replace(/_+/g, '_')
+    .replace(/^_|_$/g, '');
+}
+
+// ---------- Core parser: HTML "Lịch trình giảng dạy toàn học kỳ" -> flat session entries ----------
+function parseTimetableHTML(htmlText) {
+  const doc = new DOMParser().parseFromString(htmlText, 'text/html');
+  const table = doc.querySelector('table.table-bordered');
+  if (!table) {
+    throw new Error('Không tìm thấy bảng lịch trình trong file. Hãy chắc chắn đây là file xuất từ trang "Lịch trình giảng dạy toàn học kỳ".');
+  }
+  const tbody = table.querySelector('tbody');
+  if (!tbody) throw new Error('Cấu trúc bảng không hợp lệ (thiếu <tbody>).');
+  const rows = Array.from(tbody.children).filter(el => el.tagName === 'TR');
+
+  const entries = [];
+  let weekStart = null;
+
+  for (const row of rows) {
+    const tds = Array.from(row.children).filter(el => el.tagName === 'TD');
+    if (tds.length === 1 && tds[0].className.includes('hitec-td-tkbTuan')) {
+      const txt = tds[0].textContent.trim();
+      const m = txt.match(/(\d{2}\/\d{2}\/\d{4})/);
+      weekStart = m ? m[1] : null;
+      continue;
+    }
+    if (tds.length === 0) continue;
+
+    let buoi = null;
+    for (const cls of (tds[0].className || '').split(/\s+/)) {
+      if (BUOI_CLASS[cls]) buoi = BUOI_CLASS[cls];
+    }
+
+    tds.forEach((td, i) => {
+      const links = Array.from(td.querySelectorAll('a'));
+      for (const a of links) {
+        const href = a.getAttribute('href') || '';
+        const codeMatch = href.match(/Course\/Details\/([^/]+)\//);
+        const code = codeMatch ? codeMatch[1] : null;
+        const title = (a.getAttribute('title') || '').trim();
+        const content = a.getAttribute('data-content') || '';
+
+        const roomMatch = content.match(/Phòng học:\s*([^<]*)</);
+        const room = roomMatch ? roomMatch[1].trim() : '';
+
+        const tietMatch = content.match(/Tiết:\s*(\d+)\s*-\s*(\d+)/);
+        let tietRange = '', soTiet = null;
+        if (tietMatch) {
+          const a1 = parseInt(tietMatch[1], 10);
+          const a2 = parseInt(tietMatch[2], 10);
+          tietRange = `${a1}-${a2}`;
+          soTiet = a2 - a1 + 1;
+        }
+
+        const gvMatch = content.match(/Giáo viên:\s*(.*)$/);
+        const gv = gvMatch ? gvMatch[1].trim() : '(Không rõ)';
+
+        let mon = title, lopSV = '';
+        const parts = title.split(' - Nhóm');
+        if (parts.length > 1) {
+          mon = parts[0].trim();
+          const rest = parts[1].trim();
+          const nhomMatch = rest.match(/^(\d+)\s*-\s*(.*)$/);
+          lopSV = nhomMatch ? nhomMatch[2].trim() : rest;
+        }
+
+        if (!weekStart || !code) return;
+        const base = parseDDMMYYYY(weekStart);
+        const date = new Date(base);
+        date.setDate(date.getDate() + i);
+
+        entries.push({
+          code, title, mon, lopSV, gv, room,
+          day: DAYS[i], date, dateStr: fmtDate(date),
+          buoi, tietRange, soTiet,
+        });
+      }
+    });
+  }
+  return entries.filter(e => !isSHCD(e.mon));
+}
+
+// ---------- Group flat entries by lớp học phần code ----------
+function groupByCode(entries) {
+  const map = {};
+  for (const e of entries) {
+    if (!map[e.code]) {
+      map[e.code] = { code: e.code, title: e.title, mon: e.mon, lopSV: e.lopSV, sessions: [] };
+    }
+    map[e.code].sessions.push(e);
+  }
+  const groups = Object.values(map);
+  for (const g of groups) {
+    g.sessions.sort((a, b) => a.date - b.date || (BUOI_ORDER[a.buoi] - BUOI_ORDER[b.buoi]));
+    g.tongGio = g.sessions.reduce((s, x) => s + (x.soTiet || 0), 0);
+    g.first = g.sessions[0].dateStr;
+    g.last = g.sessions[g.sessions.length - 1].dateStr;
+    g.daySet = new Set(g.sessions.map(s => s.day));
+    // "pm" (buổi chiều/tối) đánh dấu để phân biệt màu chấm tuần khi lớp học buổi chiều/tối
+    const morningDays = new Set(g.sessions.filter(s => s.buoi === 'Sáng').map(s => s.day));
+    g.pmOnly = new Set([...g.daySet].filter(d => !morningDays.has(d)));
+  }
+  groups.sort((a, b) => a.title.localeCompare(b.title, 'vi'));
+  return groups;
+}
+
+createApp({
+  data() {
+    return {
+      parsed: false,
+      parseError: '',
+      isDragging: false,
+      fileName: '',
+      allEntries: [],       // toàn bộ entries (đã loại SHCD), tất cả GV
+      selectedTeacher: '',
+      mode: 'lop',          // lop | mon | lopsv | all
+      selectedKey: null,
+    };
+  },
+  computed: {
+    teacherList() {
+      const set = new Set(this.allEntries.map(e => e.gv));
+      return [...set].sort((a, b) => a.localeCompare(b, 'vi'));
+    },
+    filteredEntries() {
+      if (!this.selectedTeacher) return [];
+      return this.allEntries.filter(e => e.gv === this.selectedTeacher);
+    },
+    allGroups() {
+      return groupByCode(this.filteredEntries);
+    },
+    summary() {
+      const groups = this.allGroups;
+      const tongGio = groups.reduce((s, g) => s + g.tongGio, 0);
+      const tongBuoi = groups.reduce((s, g) => s + g.sessions.length, 0);
+      const tongMon = new Set(groups.map(g => g.mon)).size;
+      const tongLopSV = new Set(groups.map(g => g.lopSV)).size;
+      return { tongGio, tongBuoi, tongMon, tongLop: groups.length, tongLopSV };
+    },
+    monGroups() {
+      // môn -> danh sách lớp
+      const map = {};
+      for (const g of this.allGroups) {
+        (map[g.mon] = map[g.mon] || []).push(g);
+      }
+      return map;
+    },
+    lopSVGroups() {
+      const map = {};
+      for (const g of this.allGroups) {
+        (map[g.lopSV] = map[g.lopSV] || []).push(g);
+      }
+      return map;
+    },
+    sideItems() {
+      if (this.mode === 'lop') {
+        return this.allGroups.map(g => ({
+          key: g.code, label: g.title, sub: this.shortCode(g.code), count: 1,
+        }));
+      }
+      if (this.mode === 'mon') {
+        return Object.entries(this.monGroups)
+          .sort((a, b) => a[0].localeCompare(b[0], 'vi'))
+          .map(([mon, gs]) => ({ key: mon, label: mon, sub: '', count: gs.length }));
+      }
+      if (this.mode === 'lopsv') {
+        return Object.entries(this.lopSVGroups)
+          .sort((a, b) => a[0].localeCompare(b[0], 'vi'))
+          .map(([lop, gs]) => ({ key: lop, label: lop, sub: '', count: gs.length }));
+      }
+      return [];
+    },
+    displayedGroups() {
+      if (this.mode === 'all') return this.allGroups;
+      if (!this.selectedKey) return [];
+      if (this.mode === 'lop') return this.allGroups.filter(g => g.code === this.selectedKey);
+      if (this.mode === 'mon') return this.monGroups[this.selectedKey] || [];
+      if (this.mode === 'lopsv') return this.lopSVGroups[this.selectedKey] || [];
+      return [];
+    },
+    viewTotals() {
+      const gio = this.displayedGroups.reduce((s, g) => s + g.tongGio, 0);
+      const buoi = this.displayedGroups.reduce((s, g) => s + g.sessions.length, 0);
+      return { gio, buoi };
+    },
+  },
+  watch: {
+    selectedTeacher() { this.selectedKey = null; this.mode = 'lop'; },
+  },
+  methods: {
+    teacherCount(t) {
+      return this.allEntries.filter(e => e.gv === t).length;
+    },
+    shortCode(code) {
+      return code.replace(/^\d{4}-\d{4}\.\d\./, '');
+    },
+    setMode(m) {
+      this.mode = m;
+      this.selectedKey = null;
+    },
+    onDrop(e) {
+      this.isDragging = false;
+      const file = e.dataTransfer.files[0];
+      if (file) this.readFile(file);
+    },
+    onFileChange(e) {
+      const file = e.target.files[0];
+      if (file) this.readFile(file);
+    },
+    readFile(file) {
+      this.parseError = '';
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          const entries = parseTimetableHTML(ev.target.result);
+          if (entries.length === 0) {
+            throw new Error('Không tìm thấy buổi học nào trong file (sau khi loại các lớp Tuần sinh hoạt Công dân).');
+          }
+          this.allEntries = entries;
+          this.fileName = file.name;
+          this.parsed = true;
+          const teachers = [...new Set(entries.map(e => e.gv))].sort((a, b) => a.localeCompare(b, 'vi'));
+          this.selectedTeacher = teachers.length === 1 ? teachers[0] : '';
+        } catch (err) {
+          this.parseError = err.message || String(err);
+        }
+      };
+      reader.onerror = () => { this.parseError = 'Không đọc được nội dung file.'; };
+      reader.readAsText(file, 'UTF-8');
+    },
+    resetAll() {
+      this.parsed = false;
+      this.allEntries = [];
+      this.selectedTeacher = '';
+      this.mode = 'lop';
+      this.selectedKey = null;
+      this.parseError = '';
+      this.fileName = '';
+      if (this.$refs.fileInput) this.$refs.fileInput.value = '';
+    },
+    scopeLabel() {
+      if (this.mode === 'all') return 'ToanBo';
+      if (this.mode === 'lop') return this.selectedKey ? this.shortCode(this.selectedKey) : 'Lop';
+      if (this.mode === 'mon') return this.selectedKey || 'Mon';
+      if (this.mode === 'lopsv') return this.selectedKey || 'LopSV';
+      return 'BaoCao';
+    },
+    exportFileBaseName() {
+      const teacher = removeTones(this.selectedTeacher || 'GV');
+      const scope = removeTones(this.scopeLabel());
+      return `LichGiang_${teacher}_${scope}`;
+    },
+    exportCSV() {
+      if (this.displayedGroups.length === 0) return;
+      const rows = [['Mã lớp học phần', 'Tên lớp học phần', 'STT', 'Thứ', 'Ngày', 'Buổi', 'Tiết', 'Số tiết']];
+      for (const g of this.displayedGroups) {
+        g.sessions.forEach((s, idx) => {
+          rows.push([this.shortCode(g.code), g.title, idx + 1, s.day, s.dateStr, s.buoi, s.tietRange, s.soTiet]);
+        });
+      }
+      const csv = rows.map(r => r.map(csvCell).join(',')).join('\r\n');
+      const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+      downloadBlob(blob, this.exportFileBaseName() + '.csv');
+    },
+    exportExcel() {
+      if (this.displayedGroups.length === 0) return;
+      const wb = XLSX.utils.book_new();
+
+      const overview = [['Mã lớp học phần', 'Tên lớp học phần', 'Môn', 'Lớp SV', 'Số buổi', 'Tổng số giờ', 'Từ ngày', 'Đến ngày']];
+      for (const g of this.displayedGroups) {
+        overview.push([this.shortCode(g.code), g.title, g.mon, g.lopSV, g.sessions.length, g.tongGio, g.first, g.last]);
+      }
+      const wsOverview = XLSX.utils.aoa_to_sheet(overview);
+      XLSX.utils.book_append_sheet(wb, wsOverview, 'Tong hop');
+
+      const usedNames = new Set(['Tong hop']);
+      for (const g of this.displayedGroups) {
+        const rows = [['STT', 'Thứ', 'Ngày', 'Buổi', 'Tiết', 'Số tiết']];
+        g.sessions.forEach((s, idx) => rows.push([idx + 1, s.day, s.dateStr, s.buoi, s.tietRange, s.soTiet]));
+        const ws = XLSX.utils.aoa_to_sheet(rows);
+        let name = sheetName(this.shortCode(g.code));
+        let n = name, i = 1;
+        while (usedNames.has(n)) { n = (name + '_' + (++i)).slice(0, 31); }
+        usedNames.add(n);
+        XLSX.utils.book_append_sheet(wb, ws, n);
+      }
+      XLSX.writeFile(wb, this.exportFileBaseName() + '.xlsx');
+    },
+  },
+}).mount('#app');
+
+function csvCell(v) {
+  const s = String(v ?? '');
+  if (/[",\r\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+  return s;
+}
+function downloadBlob(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+function sheetName(s) {
+  return String(s).replace(/[\\/?*[\]:]/g, '_').slice(0, 31);
+}
+</script>
+
+</body>
+</html>
