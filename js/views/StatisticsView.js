@@ -1,5 +1,6 @@
 import { state } from '../state.js';
 import { esc } from '../utils/string-utils.js';
+import { renderIcon } from '../utils/icons.js';
 
 export function renderStatisticsView() {
     const container = document.getElementById('statisticsContainer');
@@ -9,13 +10,12 @@ export function renderStatisticsView() {
         container.innerHTML = `
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 text-center max-w-md mx-auto shadow-sm">
                 <div class="w-12 h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center mx-auto mb-3">
-                    <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                    ${renderIcon('bar-chart-3', 'w-6 h-6')}
                 </div>
                 <h3 class="font-heading font-bold text-base text-slate-800 dark:text-slate-100 mb-1">Chưa có dữ liệu thống kê</h3>
                 <p class="text-xs text-slate-500 dark:text-slate-400">Vui lòng nạp file lịch giảng để xem các chỉ số phân tích và tổng hợp.</p>
             </div>
         `;
-        if (window.lucide) window.lucide.createIcons({ root: container });
         return;
     }
 
@@ -55,7 +55,7 @@ export function renderStatisticsView() {
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm flex flex-col justify-between">
                 <div class="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
                     <span class="text-xs font-heading font-semibold uppercase tracking-wider">Lớp học phần</span>
-                    <i data-lucide="layers" class="w-4 h-4 text-blue-600 dark:text-blue-400"></i>
+                    ${renderIcon('layers', 'w-4 h-4 text-blue-600 dark:text-blue-400')}
                 </div>
                 <div class="font-num text-2xl font-bold text-slate-900 dark:text-white">${totalClasses}</div>
                 <span class="text-[11px] text-slate-400 dark:text-slate-500 mt-1">Được phân công giảng dạy</span>
@@ -64,7 +64,7 @@ export function renderStatisticsView() {
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm flex flex-col justify-between">
                 <div class="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
                     <span class="text-xs font-heading font-semibold uppercase tracking-wider">Lớp sinh viên</span>
-                    <i data-lucide="users" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i>
+                    ${renderIcon('users', 'w-4 h-4 text-emerald-600 dark:text-emerald-400')}
                 </div>
                 <div class="font-num text-2xl font-bold text-slate-900 dark:text-white">${totalCohorts}</div>
                 <span class="text-[11px] text-slate-400 dark:text-slate-500 mt-1">Khóa & chuyên ngành SV</span>
@@ -73,7 +73,7 @@ export function renderStatisticsView() {
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm flex flex-col justify-between">
                 <div class="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
                     <span class="text-xs font-heading font-semibold uppercase tracking-wider">Tổng số tiết</span>
-                    <i data-lucide="clock" class="w-4 h-4 text-indigo-600 dark:text-indigo-400"></i>
+                    ${renderIcon('clock', 'w-4 h-4 text-indigo-600 dark:text-indigo-400')}
                 </div>
                 <div class="font-num text-2xl font-bold text-slate-900 dark:text-white">${totalHours} <span class="text-sm font-normal text-slate-500 dark:text-slate-400">tiết</span></div>
                 <span class="text-[11px] text-slate-400 dark:text-slate-500 mt-1">Khối lượng quy chuẩn</span>
@@ -82,7 +82,7 @@ export function renderStatisticsView() {
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm flex flex-col justify-between">
                 <div class="flex items-center justify-between text-slate-500 dark:text-slate-400 mb-2">
                     <span class="text-xs font-heading font-semibold uppercase tracking-wider">Tổng số buổi</span>
-                    <i data-lucide="calendar" class="w-4 h-4 text-amber-600 dark:text-amber-400"></i>
+                    ${renderIcon('calendar', 'w-4 h-4 text-amber-600 dark:text-amber-400')}
                 </div>
                 <div class="font-num text-2xl font-bold text-slate-900 dark:text-white">${totalSessions} <span class="text-sm font-normal text-slate-500 dark:text-slate-400">buổi</span></div>
                 <span class="text-[11px] text-slate-400 dark:text-slate-500 mt-1">Thời lượng lên lớp</span>
@@ -95,7 +95,7 @@ export function renderStatisticsView() {
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
                 <div>
                     <h3 class="font-heading font-bold text-sm text-slate-800 dark:text-slate-100 mb-1 flex items-center gap-2">
-                        <i data-lucide="sun-medium" class="w-4 h-4 text-amber-500"></i> Phân bố ca giảng dạy
+                        ${renderIcon('sun-medium', 'w-4 h-4 text-amber-500')} Phân bố ca giảng dạy
                     </h3>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Tỉ lệ ca dạy theo Buổi sáng, Buổi chiều và Buổi tối.</p>
                 </div>
@@ -128,7 +128,7 @@ export function renderStatisticsView() {
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
                 <div>
                     <h3 class="font-heading font-bold text-sm text-slate-800 dark:text-slate-100 mb-1 flex items-center gap-2">
-                        <i data-lucide="map-pin" class="w-4 h-4 text-blue-500"></i> Địa điểm giảng đường
+                        ${renderIcon('map-pin', 'w-4 h-4 text-blue-500')} Địa điểm giảng đường
                     </h3>
                     <p class="text-xs text-slate-500 dark:text-slate-400 mb-4">Tần suất sử dụng các phòng học theo lịch giảng.</p>
                 </div>
@@ -148,7 +148,7 @@ export function renderStatisticsView() {
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden">
             <div class="p-4 bg-slate-50/80 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
                 <h3 class="font-heading font-bold text-sm text-slate-800 dark:text-slate-100 flex items-center gap-2">
-                    <i data-lucide="book-marked" class="w-4 h-4 text-emerald-600 dark:text-emerald-400"></i> Chi tiết theo từng học phần
+                    ${renderIcon('book-marked', 'w-4 h-4 text-emerald-600 dark:text-emerald-400')} Chi tiết theo từng học phần
                 </h3>
             </div>
             <div class="overflow-x-auto w-full">
@@ -190,6 +190,4 @@ export function renderStatisticsView() {
             </div>
         </div>
     `;
-
-    if (window.lucide) window.lucide.createIcons({ root: container });
 }

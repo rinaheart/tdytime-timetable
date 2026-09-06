@@ -3,6 +3,7 @@ import CurriculumParser from '../services/CurriculumParser.js';
 import { esc } from '../utils/string-utils.js';
 import TimetableExporter from '../services/ExcelExporter.js';
 import StorageService from '../services/StorageService.js';
+import { renderIcon } from '../utils/icons.js';
 
 function getMatchBadgeHtml(status, score) {
     if (status === 'exact') {
@@ -158,11 +159,6 @@ export function renderCurriculumTables(parsedData, subjectMatches, curriculumKey
 
     // Update subject chips
     renderSubjectPills();
-
-    if (window.lucide) {
-        const sec = document.getElementById('curriculumSection');
-        window.lucide.createIcons({ root: sec || document.body });
-    }
 }
 
 const DEMO_SYLLABUS = `Dịch tễ học - Thực hành Nghiên cứu khoa học\t\t\t\t
@@ -202,7 +198,7 @@ export function renderSubjectPills() {
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0"></span>
                     <span>${esc(s.name)}</span>
                     <span class="text-[11px] font-normal opacity-80 font-num">(${s.classCount} lớp • ${s.totalHours}t)</span>
-                    <i data-lucide="check" class="w-3 h-3 text-emerald-600 dark:text-emerald-400 ml-0.5"></i>
+                    ${renderIcon('check', 'w-3 h-3 text-emerald-600 dark:text-emerald-400 ml-0.5')}
                 </span>
             `;
         }
@@ -214,11 +210,6 @@ export function renderSubjectPills() {
             </span>
         `;
     }).join('');
-
-    if (window.lucide) {
-        const list = document.getElementById('syllabusSubjectList');
-        if (list) window.lucide.createIcons({ root: list });
-    }
 }
 
 export function updateLineCount() {

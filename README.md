@@ -74,8 +74,7 @@ app/
 │   └── tailwind.min.css        # CSS tĩnh biên dịch sẵn (26.8 KB)
 ├── vendor/                     # Thư viện bên thứ ba cục bộ (100% Offline)
 │   ├── xlsx.full.min.js        # SheetJS v0.18.5
-│   ├── exceljs.min.js          # ExcelJS v4.3.0
-│   └── lucide.min.js           # Lucide Icons v0.468.0
+│   └── exceljs.min.js          # ExcelJS v4.3.0
 ├── js/
 │   ├── main.js                 # Khởi tạo ứng dụng và luồng nạp tệp
 │   ├── state.js                # Quản lý trạng thái reactive in-memory
@@ -93,6 +92,7 @@ app/
 │   │   ├── StatisticsView.js   # Dashboard phân tích và thống kê KPI
 │   │   └── UIComponents.js     # Thẻ item danh mục và nhãn chip
 │   └── utils/
+│       ├── icons.js            # Zero-Runtime SVG Icons Registry (5.9 KB, 30 icons)
 │       ├── string-utils.js     # Hàm esc() khử XSS
 │       └── csv-parser.js       # Phân tích cú pháp dòng bảng tính
 └── assets/                     # Dữ liệu mẫu và biểu tượng

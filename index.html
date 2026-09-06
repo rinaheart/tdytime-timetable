@@ -10,9 +10,6 @@
 <script src="vendor/xlsx.full.min.js"></script>
 <!-- ExcelJS for Styled Excel export (Local Offline) -->
 <script src="vendor/exceljs.min.js"></script>
-<!-- Lucide Icons (Local Offline Standard) -->
-<script src="vendor/lucide.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <!-- TdyTime Native Typography: Be Vietnam Pro + Montserrat + JetBrains Mono -->
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <!-- Compiled Tailwind CSS (PERF-01: Zero-JIT Offline) -->
@@ -24,7 +21,7 @@
 <header class="bg-white dark:bg-slate-900 h-14 w-full sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 shadow-sm flex justify-between items-center px-4">
     <div class="flex items-center gap-3 h-full">
         <button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" aria-label="Thu gọn hoặc mở rộng thanh điều hướng" onclick="document.getElementById('app-body').classList.toggle('sidebar-expanded'); document.getElementById('app-body').classList.toggle('sidebar-collapsed');">
-            <i data-lucide="menu" class="w-5 h-5" aria-hidden="true"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-menu w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></svg>
         </button>
         <div class="flex items-center gap-2">
             <span class="font-heading font-bold text-slate-900 dark:text-white tracking-tight whitespace-nowrap text-base flex items-center gap-2">
@@ -42,8 +39,8 @@
 
     <div class="flex items-center gap-2 shrink-0">
         <button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-colors active:scale-95 duration-150 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" aria-label="Chuyển đổi giao diện sáng/tối" onclick="document.documentElement.classList.toggle('dark')">
-            <i data-lucide="moon" class="w-5 h-5 dark:hidden" aria-hidden="true"></i>
-            <i data-lucide="sun" class="w-5 h-5 hidden dark:block" aria-hidden="true"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-moon w-5 h-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-sun w-5 h-5 hidden dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" /></svg>
         </button>
     </div>
 </header>
@@ -54,39 +51,39 @@
     <aside class="sidebar bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col shrink-0 overflow-hidden relative z-20 py-3 justify-between" aria-label="Điều hướng chính">
         <nav class="flex flex-col gap-1 overflow-y-auto flex-1 min-h-0 px-2.5 custom-scrollbar" id="sideListContainer">
             <a class="nav-item text-slate-600 dark:text-slate-400 group active mode-tab focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" data-mode="classes" href="#" title="Lớp học phần">
-                <div class="icon-box"><i data-lucide="layers" class="w-5 h-5" aria-hidden="true"></i></div>
+                <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-layers w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg></div>
                 <span class="sidebar-text">Lớp học phần</span>
             </a>
             <a class="nav-item text-slate-600 dark:text-slate-400 group mode-tab focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" data-mode="students" href="#" title="Lớp SV">
-                <div class="icon-box"><i data-lucide="users" class="w-5 h-5" aria-hidden="true"></i></div>
+                <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-users w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg></div>
                 <span class="sidebar-text">Lớp SV</span>
             </a>
             <a class="nav-item text-slate-600 dark:text-slate-400 group mode-tab focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" data-mode="subjects" href="#" title="Học phần">
-                <div class="icon-box"><i data-lucide="book-open" class="w-5 h-5" aria-hidden="true"></i></div>
+                <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-book-open w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></svg></div>
                 <span class="sidebar-text">Học phần</span>
             </a>
             
             <div class="my-2 border-t border-slate-200 dark:border-slate-800 mx-2"></div>
             
             <a class="nav-item text-slate-600 dark:text-slate-400 group mode-tab focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" data-mode="curriculum" href="#" title="Chương trình">
-                <div class="icon-box"><i data-lucide="graduation-cap" class="w-5 h-5" aria-hidden="true"></i></div>
+                <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-graduation-cap w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg></div>
                 <span class="sidebar-text">Chương trình</span>
             </a>
             <a class="nav-item text-slate-600 dark:text-slate-400 group mode-tab focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" data-mode="schedule" href="#" title="Kế hoạch">
-                <div class="icon-box"><i data-lucide="calendar-check" class="w-5 h-5" aria-hidden="true"></i></div>
+                <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-calendar-check w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4" /><path d="M16 2v4" /><rect width="18" height="18" x="3" y="4" rx="2" /><path d="M3 10h18" /><path d="m9 16 2 2 4-4" /></svg></div>
                 <span class="sidebar-text">Kế hoạch</span>
             </a>
             
             <div class="my-2 border-t border-slate-200 dark:border-slate-800 mx-2"></div>
             
             <a class="nav-item text-slate-600 dark:text-slate-400 group mode-tab focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" data-mode="statistics" href="#" title="Thống kê">
-                <div class="icon-box"><i data-lucide="bar-chart-3" class="w-5 h-5" aria-hidden="true"></i></div>
+                <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-bar-chart-3 w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16" /><path d="M18 17V9" /><path d="M13 17V5" /><path d="M8 17v-3" /></svg></div>
                 <span class="sidebar-text">Thống kê</span>
             </a>
 
             <!-- Reset Button ngay dưới nút Thống kê -->
             <button class="nav-item text-amber-700 hover:bg-amber-50 dark:text-amber-400 dark:hover:bg-amber-950/40 font-medium text-sm hidden focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none mt-1" id="btnResetFile" aria-label="Đổi file lịch giảng khác" title="Đổi lịch giảng">
-                <div class="icon-box"><i data-lucide="refresh-cw" class="w-5 h-5" aria-hidden="true"></i></div>
+                <div class="icon-box"><svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-refresh-cw w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></svg></div>
                 <span class="sidebar-text">Đổi lịch giảng</span>
             </button>
         </nav>
@@ -117,21 +114,21 @@
             <!-- Banner quay lại nếu bấm nhầm Đổi lịch giảng -->
             <div id="bannerReturnToActive" class="hidden p-3.5 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-900 rounded-2xl flex items-center justify-between gap-3">
                 <div class="flex items-center gap-2.5 text-xs text-blue-800 dark:text-blue-300">
-                    <i data-lucide="info" class="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-info w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
                     <span>Lịch giảng hiện tại vẫn được giữ an toàn. Bạn có thể nhấn nút bên phải hoặc chọn tab ở thanh bên để quay lại.</span>
                 </div>
                 <button id="btnReturnToActive" type="button" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-xs font-semibold shrink-0 transition-colors shadow-sm flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none">
-                    <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Quay lại
+                    <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-arrow-left w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7" /><path d="M19 12H5" /></svg> Quay lại
                 </button>
             </div>
             
             <div class="border border-slate-200 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
                 <div class="flex border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50 px-4 pt-3 gap-4" role="tablist">
                     <button id="tabUploadFile" role="tab" aria-selected="true" class="font-semibold text-sm text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400 pb-2.5 px-3 flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none">
-                        <i data-lucide="upload" class="w-4 h-4" aria-hidden="true"></i> Tải file HTML
+                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-upload w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" x2="12" y1="3" y2="15" /></svg> Tải file HTML
                     </button>
                     <button id="tabPasteData" role="tab" aria-selected="false" class="font-medium text-sm text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 pb-2.5 px-3 flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none">
-                        <i data-lucide="clipboard" class="w-4 h-4" aria-hidden="true"></i> Dán HTML
+                        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-clipboard w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" /><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" /></svg> Dán HTML
                     </button>
                 </div>
                 
@@ -140,7 +137,7 @@
                     <div id="panelUploadFile" role="button" tabindex="0" aria-label="Nhấn để tải lên tệp lịch giảng HTML" class="flex flex-col items-center justify-center p-8 border-2 border-dashed border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-400 rounded-xl cursor-pointer transition-colors bg-slate-50/50 dark:bg-slate-900/50 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" onclick="document.getElementById('fileInput').click()">
                         <input type="file" id="fileInput" class="hidden" accept=".html,.htm" aria-label="Tải lên tệp lịch giảng HTML">
                         <div class="w-14 h-14 rounded-2xl bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-3">
-                            <i data-lucide="file-code" class="w-8 h-8" aria-hidden="true"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-code w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 12.5 8 15l2 2.5" /><path d="m14 12.5 2 2.5-2 2.5" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z" /></svg>
                         </div>
                         <h3 class="font-heading font-bold text-base text-slate-800 dark:text-slate-100 mb-1 text-balance">Chọn hoặc kéo thả file HTML</h3>
                         <p class="text-xs text-slate-500 dark:text-slate-400 text-balance">File lịch giảng từ portal tín chỉ ĐHYD</p>
@@ -152,7 +149,7 @@
                         <textarea id="txtPasteHtml" aria-label="Dán mã nguồn HTML lịch giảng" spellcheck="false" autocomplete="off" class="w-full h-48 p-3 rounded-xl border border-slate-200 dark:border-slate-700 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 font-mono bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100" placeholder="Dán HTML từ portal (Ctrl+A → Ctrl+C)…"></textarea>
                         <div class="mt-4 flex justify-end">
                             <button id="btnProcessPaste" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-sm font-semibold flex items-center gap-2 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none shadow-sm">
-                                <i data-lucide="sparkles" class="w-4 h-4" aria-hidden="true"></i> Phân tích lịch giảng
+                                <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-sparkles w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /><path d="M20 3v4" /><path d="M22 5h-4" /><path d="M4 17v2" /><path d="M5 18H3" /></svg> Phân tích lịch giảng
                             </button>
                         </div>
                     </div>
@@ -180,7 +177,7 @@
                 <div class="bg-gradient-to-r from-blue-50/80 via-white to-slate-50/80 dark:from-slate-900 dark:via-slate-900 dark:to-slate-800/80 border border-blue-100 dark:border-slate-800 rounded-2xl p-4 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-3">
                     <div class="flex items-start md:items-center gap-3">
                         <div class="w-10 h-10 rounded-xl bg-blue-600/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400 flex items-center justify-center shrink-0">
-                            <i data-lucide="book-open" class="w-5 h-5" aria-hidden="true"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-book-open w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14" /><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" /></svg>
                         </div>
                         <div>
                             <h2 class="font-heading font-bold text-base text-slate-900 dark:text-white">Đối chiếu Chương trình khung</h2>
@@ -189,10 +186,10 @@
                     </div>
                     <div class="flex items-center gap-2 shrink-0">
                         <button id="btnLoadDemoSyllabus" class="py-1.5 px-3.5 bg-white dark:bg-slate-800 hover:bg-blue-50 dark:hover:bg-slate-700 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-900/60 rounded-full font-medium text-xs flex items-center gap-1.5 transition-all shadow-2xs active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" title="Nạp dữ liệu chương trình khung mẫu để kiểm tra nhanh">
-                            <i data-lucide="sparkles" class="w-3.5 h-3.5" aria-hidden="true"></i> Nạp dữ liệu mẫu
+                            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-sparkles w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /><path d="M20 3v4" /><path d="M22 5h-4" /><path d="M4 17v2" /><path d="M5 18H3" /></svg> Nạp dữ liệu mẫu
                         </button>
                         <button id="btnDownloadSyllabusTemplate" class="py-1.5 px-3.5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-full font-medium text-xs flex items-center gap-1.5 transition-all shadow-2xs active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" title="Tải mẫu bảng Excel chương trình khung">
-                            <i data-lucide="download" class="w-3.5 h-3.5" aria-hidden="true"></i> Tải file mẫu
+                            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-download w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" x2="12" y1="15" y2="3" /></svg> Tải file mẫu
                         </button>
                     </div>
                 </div>
@@ -201,7 +198,7 @@
                 <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 shadow-sm flex flex-col gap-2">
                     <div class="flex items-center justify-between">
                         <span class="text-xs font-semibold text-slate-700 dark:text-slate-300 uppercase tracking-wider font-heading flex items-center gap-1.5">
-                            <i data-lucide="layers" class="w-3.5 h-3.5 text-blue-600 dark:text-blue-400"></i> Học phần cần liên kết từ Lịch giảng
+                            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-layers w-3.5 h-3.5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg> Học phần cần liên kết từ Lịch giảng
                         </span>
                         <span class="text-[11px] text-slate-400 dark:text-slate-500">Tự động nhận diện từ file đã tải</span>
                     </div>
@@ -245,7 +242,7 @@ Dịch tễ học - Thực hành Nghiên cứu khoa học
                     <!-- Editor Footer Toolbar -->
                     <div class="px-4 py-3 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 flex flex-wrap justify-between items-center gap-3">
                         <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-                            <i data-lucide="info" class="w-4 h-4 text-blue-500 shrink-0" aria-hidden="true"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-info w-4 h-4 text-blue-500 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
                             <span>Chọn bảng trong Excel, nhấn <kbd class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-mono text-[10px]">Ctrl+C</kbd> rồi dán vào ô trên.</span>
                         </p>
                         <div class="flex items-center gap-2">
@@ -253,7 +250,7 @@ Dịch tễ học - Thực hành Nghiên cứu khoa học
                                 Xóa nội dung
                             </button>
                             <button id="btnProcessSyllabusGlobal" class="py-2 px-5 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-semibold text-xs flex items-center gap-1.5 transition-all shadow-sm active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none">
-                                <i data-lucide="sparkles" class="w-4 h-4" aria-hidden="true"></i> Phân tích & Nạp chương trình khung
+                                <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-sparkles w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /><path d="M20 3v4" /><path d="M22 5h-4" /><path d="M4 17v2" /><path d="M5 18H3" /></svg> Phân tích & Nạp chương trình khung
                             </button>
                         </div>
                     </div>
@@ -266,7 +263,7 @@ Dịch tễ học - Thực hành Nghiên cứu khoa học
                         <div class="p-4 bg-slate-50/80 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 flex flex-wrap justify-between items-center gap-3">
                             <div>
                                 <h3 class="font-heading font-bold text-sm text-slate-800 dark:text-slate-100 flex items-center gap-2 text-balance">
-                                    <i data-lucide="repeat" class="w-4 h-4 text-blue-600 dark:text-blue-400" aria-hidden="true"></i> Bảng 1. Đối chiếu học phần & chương trình khung
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-repeat w-4 h-4 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m17 2 4 4-4 4" /><path d="M3 11v-1a4 4 0 0 1 4-4h14" /><path d="m7 22-4-4 4-4" /><path d="M21 13v1a4 4 0 0 1-4 4H3" /></svg> Bảng 1. Đối chiếu học phần & chương trình khung
                                 </h3>
                                 <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Tự động nhận diện chữ viết tắt và gợi ý CTK phù hợp nhất. Có thể điều chỉnh thủ công.</p>
                             </div>
@@ -296,7 +293,7 @@ Dịch tễ học - Thực hành Nghiên cứu khoa học
                     <div id="table2Container" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-sm overflow-hidden hidden">
                         <div class="p-4 bg-slate-50/80 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800">
                             <h3 class="font-heading font-bold text-sm text-slate-700 dark:text-slate-300 flex items-center gap-2 text-balance">
-                                <i data-lucide="info" class="w-4 h-4 text-amber-500" aria-hidden="true"></i> Bảng 2. Chương trình khung chưa có trong lịch giảng kỳ này
+                                <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-info w-4 h-4 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg> Bảng 2. Chương trình khung chưa có trong lịch giảng kỳ này
                             </h3>
                             <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Các môn học trong CTK đã nạp nhưng không có phân công dạy trong kỳ hiện tại.</p>
                         </div>
@@ -330,10 +327,10 @@ Dịch tễ học - Thực hành Nghiên cứu khoa học
                     </div>
                     <div class="flex items-center gap-2">
                         <button id="btnRunMapping" class="btn bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-xs font-semibold flex items-center shadow-sm disabled:opacity-50 disabled:cursor-not-allowed transition-all active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none" title="Khớp lại kế hoạch bài giảng">
-                            <i data-lucide="refresh-cw" class="w-4 h-4 mr-1.5" aria-hidden="true"></i> Khớp lại kế hoạch
+                            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-refresh-cw w-4 h-4 mr-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" /><path d="M21 3v5h-5" /><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16" /><path d="M8 16H3v5" /></svg> Khớp lại kế hoạch
                         </button>
                         <button id="btnExportAllMapped" class="btn bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-full text-xs font-semibold flex items-center shadow-sm transition-all active:scale-95 focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:outline-none" title="Xuất toàn bộ kế hoạch ra file Excel">
-                            <i data-lucide="file-spreadsheet" class="w-4 h-4 mr-1.5" aria-hidden="true"></i> Xuất toàn bộ (Excel)
+                            <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-file-spreadsheet w-4 h-4 mr-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M8 13h2" /><path d="M14 13h2" /><path d="M8 17h2" /><path d="M14 17h2" /></svg> Xuất toàn bộ (Excel)
                         </button>
                     </div>
                 </div>

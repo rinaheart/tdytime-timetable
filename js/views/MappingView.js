@@ -3,6 +3,7 @@ import TimetableMapper from '../services/MappingEngine.js';
 import TimetableExporter from '../services/ExcelExporter.js';
 import StorageService from '../services/StorageService.js';
 import { esc } from '../utils/string-utils.js';
+import { renderIcon } from '../utils/icons.js';
 
 export function setupMappingView() {
     const btnRunMapping = document.getElementById('btnRunMapping');
@@ -58,7 +59,7 @@ export function executeMapping(options = { saveStorage: true }) {
                     <div class="px-4 py-3 bg-slate-50/80 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
                         <h3 class="font-display font-bold text-base text-blue-600 dark:text-blue-400 text-balance">${esc(cc.fullTitle)}</h3>
                         <button class="btn-export-excel flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 rounded-full text-xs font-medium hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none" data-class="${esc(cc.classCode)}" aria-label="Xuất Excel cho lớp ${esc(cc.shortClassCode || cc.classCode)}">
-                            <i data-lucide="download" class="w-3.5 h-3.5"></i> Xuất Excel
+                            ${renderIcon('download', 'w-3.5 h-3.5')} Xuất Excel
                         </button>
                     </div>
                     <div class="overflow-x-auto">
@@ -96,7 +97,7 @@ export function executeMapping(options = { saveStorage: true }) {
             card.innerHTML = `
                 <div class="p-4 bg-amber-50/50 dark:bg-amber-950/20 border-b border-amber-200 dark:border-amber-800/40">
                     <h3 class="font-bold text-sm text-amber-700 dark:text-amber-400 flex items-center gap-2 text-balance">
-                        <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600"></i> ${esc(subject.name)}
+                        ${renderIcon('alert-triangle', 'w-4 h-4 text-amber-600')} ${esc(subject.name)}
                     </h3>
                     <p class="text-xs mt-1 text-slate-500 dark:text-slate-400 text-balance">Chưa có chương trình khung hoặc có 0 tiết. Bỏ qua.</p>
                 </div>
@@ -118,11 +119,6 @@ export function executeMapping(options = { saveStorage: true }) {
     const btnExport = document.getElementById('btnExportAllMapped');
     if (btnRun) btnRun.style.display = 'inline-flex';
     if (btnExport) btnExport.style.display = 'inline-flex';
-
-    // Render icons
-    if (window.lucide) {
-        window.lucide.createIcons({ root: mappingResultsContainer });
-    }
 
     // Bind events for dynamically created export buttons
     document.querySelectorAll('.btn-export-excel').forEach(btn => {
@@ -188,12 +184,12 @@ export function renderMappingView() {
         mappingResultsContainer.innerHTML = `
             <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 text-center max-w-lg mx-auto shadow-sm flex flex-col items-center">
                 <div class="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center mb-3">
-                    <i data-lucide="calendar-search" class="w-6 h-6"></i>
+                    ${renderIcon('calendar-search', 'w-6 h-6')}
                 </div>
                 <h3 class="font-heading font-bold text-base text-slate-800 dark:text-slate-100 mb-1">Chưa nạp chương trình khung</h3>
                 <p class="text-xs text-slate-500 dark:text-slate-400 max-w-sm">Để tự động khớp bài học chi tiết cho từng buổi dạy, vui lòng nạp dữ liệu chương trình khung ở tab Chương trình.</p>
                 <button id="btnGoToCurriculum" class="mt-4 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all shadow-sm active:scale-95">
-                    <i data-lucide="book-open" class="w-4 h-4"></i> Đến tab Chương trình
+                    ${renderIcon('book-open', 'w-4 h-4')} Đến tab Chương trình
                 </button>
             </div>
         `;
@@ -204,7 +200,6 @@ export function renderMappingView() {
                 if (tab) tab.click();
             });
         }
-        if (window.lucide) window.lucide.createIcons({ root: mappingResultsContainer });
         return;
     }
 

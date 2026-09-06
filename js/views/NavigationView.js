@@ -36,7 +36,6 @@ export function switchTab(mode) {
     state.selectedEntityId = null;
     StorageService.saveActiveTab(mode);
     renderActiveTab();
-    if (window.lucide) window.lucide.createIcons();
 }
 
 export function setupNavigation() {
@@ -70,7 +69,6 @@ export function setupNavigation() {
             if (fileInput) fileInput.value = '';
             const txtPasteHtml = document.getElementById('txtPasteHtml');
             if (txtPasteHtml) txtPasteHtml.value = '';
-            if (window.lucide) window.lucide.createIcons();
         });
     }
 
@@ -118,7 +116,6 @@ export function renderActiveTab() {
         statisticsView.style.display = 'flex';
         renderStatisticsView();
     }
-    if (window.lucide) window.lucide.createIcons();
 }
 
 export function renderSubMenu(type) {

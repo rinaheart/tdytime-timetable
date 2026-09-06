@@ -2,6 +2,7 @@ import { state } from '../state.js';
 import { esc } from '../utils/string-utils.js';
 import TimetableExporter from '../services/ExcelExporter.js';
 import StorageService from '../services/StorageService.js';
+import { renderIcon } from '../utils/icons.js';
 
 export function openDetailView(type, id, title, classes) {
     state.selectedEntityId = id;
@@ -95,22 +96,22 @@ export function renderDetailTable(title, classes) {
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                         <div class="flex items-start sm:items-center gap-2 flex-1 min-w-0">
                             <button class="btn-prev-class w-9 h-9 shrink-0 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-700 dark:text-slate-200 active:scale-95 flex items-center justify-center focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none" aria-label="Xem lớp trước" title="Lớp trước">
-                                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                ${renderIcon('chevron-left', 'w-4 h-4')}
                             </button>
                             <h3 class="font-display text-base text-slate-900 dark:text-slate-100 flex-1 break-words font-bold">${esc(cc.fullTitle)}</h3>
                             <button class="btn-next-class w-9 h-9 shrink-0 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-slate-700 dark:text-slate-200 active:scale-95 flex items-center justify-center focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none" aria-label="Xem lớp tiếp theo" title="Lớp tiếp theo">
-                                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                ${renderIcon('chevron-right', 'w-4 h-4')}
                             </button>
                         </div>
                         <div class="flex gap-2 shrink-0">
                             <button class="btn-class-export-csv flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-xs font-medium text-slate-700 dark:text-slate-200 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none" data-class="${esc(cc.classCode)}" title="Xuất CSV" aria-label="Xuất file CSV">
-                                <i data-lucide="download" class="w-3.5 h-3.5"></i> Xuất CSV
+                                ${renderIcon('download', 'w-3.5 h-3.5')} Xuất CSV
                             </button>
                             <button class="btn-class-export-xlsx flex items-center gap-1.5 px-3.5 py-1.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-xs font-medium text-slate-700 dark:text-slate-200 focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none" data-class="${esc(cc.classCode)}" title="Xuất Excel" aria-label="Xuất file Excel">
-                                <i data-lucide="download" class="w-3.5 h-3.5"></i> Xuất Excel
+                                ${renderIcon('download', 'w-3.5 h-3.5')} Xuất Excel
                             </button>
                             <button class="btn-class-copy-md flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-full transition-colors text-xs font-medium focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:outline-none" data-class="${esc(cc.classCode)}" title="Sao chép Markdown" aria-label="Sao chép Markdown">
-                                <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy MD
+                                ${renderIcon('copy', 'w-3.5 h-3.5')} Copy MD
                             </button>
                         </div>
                     </div>
@@ -158,11 +159,6 @@ export function renderDetailTable(title, classes) {
 
         container.insertAdjacentHTML('beforeend', classBlockHtml);
     });
-
-    // Render Lucide icons
-    if (window.lucide) {
-        window.lucide.createIcons({ root: container });
-    }
 
     // Helper to navigate between subMenu items
     const navigateSubMenu = (delta) => {
@@ -220,15 +216,13 @@ export function renderDetailTable(title, classes) {
                 try {
                     await TimetableExporter.copyMarkdownToClipboard(md);
                     const origHtml = btn.innerHTML;
-                    btn.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5"></i> Đã chép!`;
+                    btn.innerHTML = `${renderIcon('check', 'w-3.5 h-3.5')} Đã chép!`;
                     btn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
                     btn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
-                    if (window.lucide) window.lucide.createIcons({ root: btn });
                     setTimeout(() => { 
                         btn.innerHTML = origHtml; 
                         btn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
                         btn.classList.add('bg-blue-600', 'hover:bg-blue-700');
-                        if (window.lucide) window.lucide.createIcons({ root: btn });
                     }, 2000);
                 } catch (err) {
                     console.error('Copy markdown error:', err);
@@ -288,8 +282,4 @@ export function renderCurriculumDetailTable(subjectName) {
         `;
         scheduleTableBody.appendChild(tr);
     });
-
-    if (window.lucide) {
-        window.lucide.createIcons({ root: container });
-    }
 }
