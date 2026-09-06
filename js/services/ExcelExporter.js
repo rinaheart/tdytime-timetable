@@ -5,7 +5,53 @@
  * Output standard: "Thứ | Ngày" separated columns, no unused notes/exam badges.
  */
 
+let xlsxLoadingPromise = null;
+let excelJsLoadingPromise = null;
+
+function loadScript(src) {
+    return new Promise((resolve, reject) => {
+        const existing = document.querySelector(`script[src="${src}"]`);
+        if (existing) {
+            return resolve();
+        }
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.onload = () => resolve();
+        script.onerror = () => reject(new Error(`Không thể nạp thư viện: ${src}`));
+        document.head.appendChild(script);
+    });
+}
+
 export default class TimetableExporter {
+    /**
+     * Nạp ngầm thư viện SheetJS (XLSX) theo nhu cầu (Lazy Load)
+     */
+    static async ensureXlsxLoaded() {
+        if (typeof XLSX !== 'undefined') return;
+        if (!xlsxLoadingPromise) {
+            xlsxLoadingPromise = loadScript('vendor/xlsx.full.min.js');
+        }
+        await xlsxLoadingPromise;
+        if (typeof XLSX === 'undefined') {
+            throw new Error('Thư viện SheetJS chưa sẵn sàng.');
+        }
+    }
+
+    /**
+     * Nạp ngầm thư viện ExcelJS theo nhu cầu (Lazy Load)
+     */
+    static async ensureExcelJsLoaded() {
+        if (typeof ExcelJS !== 'undefined') return;
+        if (!excelJsLoadingPromise) {
+            excelJsLoadingPromise = loadScript('vendor/exceljs.min.js');
+        }
+        await excelJsLoadingPromise;
+        if (typeof ExcelJS === 'undefined') {
+            throw new Error('Thư viện ExcelJS chưa sẵn sàng.');
+        }
+    }
+
     static removeTones(str) {
         if (!str) return '';
         return String(str)
@@ -153,11 +199,14 @@ export default class TimetableExporter {
     }
 
     /**
-     * Export to Excel (.xlsx) workbook with SheetJS.
+     * Export to Excel (.xlsx) workbook with SheetJS (Lazy-loaded).
      */
-    static exportToExcel(parsedData, singleClassCode = null, selectedClassCodes = null) {
-        if (typeof XLSX === 'undefined') {
-            alert('Thư viện SheetJS chưa sẵn sàng. Vui lòng thử lại!');
+    static async exportToExcel(parsedData, singleClassCode = null, selectedClassCodes = null) {
+        try {
+            await TimetableExporter.ensureXlsxLoaded();
+        } catch (err) {
+            console.error('Lỗi nạp SheetJS:', err);
+            alert('Không thể nạp thư viện SheetJS. Vui lòng thử lại!');
             return;
         }
 
@@ -461,8 +510,11 @@ export default class TimetableExporter {
     }
 
     static async exportMappedTimetableToExcel(classData) {
-        if (typeof ExcelJS === 'undefined') {
-            alert('Thư viện ExcelJS chưa sẵn sàng!');
+        try {
+            await TimetableExporter.ensureExcelJsLoaded();
+        } catch (err) {
+            console.error('Lỗi nạp ExcelJS:', err);
+            alert('Không thể nạp thư viện ExcelJS. Vui lòng thử lại!');
             return;
         }
         const workbook = new ExcelJS.Workbook();
@@ -475,8 +527,11 @@ export default class TimetableExporter {
     }
 
     static async exportAllMappedClasses(mappedClassesList) {
-        if (typeof ExcelJS === 'undefined') {
-            alert('Thư viện ExcelJS chưa sẵn sàng!');
+        try {
+            await TimetableExporter.ensureExcelJsLoaded();
+        } catch (err) {
+            console.error('Lỗi nạp ExcelJS:', err);
+            alert('Không thể nạp thư viện ExcelJS. Vui lòng thử lại!');
             return;
         }
         const workbook = new ExcelJS.Workbook();
@@ -490,8 +545,11 @@ export default class TimetableExporter {
     }
 
     static async exportSyllabusTemplate(uniqueSubjects) {
-        if (typeof ExcelJS === 'undefined') {
-            alert('Thư viện ExcelJS chưa sẵn sàng. Vui lòng kiểm tra lại kết nối mạng!');
+        try {
+            await TimetableExporter.ensureExcelJsLoaded();
+        } catch (err) {
+            console.error('Lỗi nạp ExcelJS:', err);
+            alert('Không thể nạp thư viện ExcelJS. Vui lòng thử lại!');
             return;
         }
 
